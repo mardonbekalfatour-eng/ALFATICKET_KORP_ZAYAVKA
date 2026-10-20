@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>ALFA TICKET — заявка</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{--bg:#efeff4;--sec:#fff;--tx:#000;--hint:#8e8e93;--acc:#2481cc;--accT:rgba(36,129,204,.12);--btn:#2481cc;--btx:#fff;--sep:rgba(128,128,128,.22);--wb:rgba(255,170,0,.16);--wt:#8a5a00;--db:rgba(229,57,53,.13);--dt:#c62828;--ob:rgba(52,199,89,.15);--ot:#1f7a35}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 -apple-system,system-ui,"Segoe UI",Roboto,sans-serif}
+button,input,select{font:inherit;color:inherit}
+.wrap{max-width:520px;margin:0 auto;padding-bottom:24px}
+.top{display:flex;align-items:center;gap:10px;padding:14px 16px 10px}
+.logo{width:42px;height:42px;border-radius:12px;background:var(--btn);color:var(--btx);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.ttl{font-size:16px;font-weight:600}
+.sub{font-size:12.5px;color:var(--hint);display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.langs{margin-left:auto;display:flex;gap:2px}
+.lg{border:none;background:transparent;font-size:12px;padding:4px 7px;border-radius:7px;color:var(--hint)}
+.lg.on{background:var(--accT);color:var(--acc);font-weight:600}
+.sec{background:var(--sec);border-radius:12px;padding:10px 12px;margin:0 10px 10px}
+.st{font-size:11.5px;color:var(--hint);margin:0 22px 5px;letter-spacing:.02em;text-transform:uppercase}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--sep);border-radius:999px;padding:7px 11px;font-size:13px;background:transparent;cursor:pointer}
+.chip.on{background:var(--accT);color:var(--acc);border-color:var(--acc)}
+.rw{display:flex;align-items:center;justify-content:space-between;padding:7px 0;gap:8px;font-size:14px}
+.rw+.rw{border-top:1px solid var(--sep)}
+.cn{display:flex;align-items:center;gap:12px}
+.cn button{width:32px;height:32px;border-radius:50%;border:1px solid var(--sep);background:transparent;font-size:18px;line-height:1;color:var(--acc)}
+.in{border:none;background:transparent;width:100%;font-size:15px;padding:7px 0;outline:none}
+.in::placeholder{color:var(--hint)}
+.er{font-size:12.5px;color:var(--dt);margin:-4px 22px 8px}
+.er:empty{display:none}
+.mb{display:block;width:calc(100% - 20px);margin:8px 10px 0;height:48px;border:none;border-radius:12px;background:var(--btn);color:var(--btx);font-weight:600;font-size:15px}
+.mb:disabled{opacity:.6}
+.sw{width:44px;height:26px;border-radius:13px;background:var(--sep);position:relative;border:none;padding:0;flex-shrink:0}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:left .15s}
+.sw.on{background:var(--acc)}.sw.on::after{left:21px}.sw.red.on{background:#e53935}
+.seg{display:flex;background:var(--sep);border-radius:10px;padding:3px;margin:0 10px 10px;gap:3px}
+.seg button{flex:1;border:none;border-radius:8px;height:36px;font-size:14px;background:transparent;color:var(--hint)}
+.seg button.on{background:var(--sec);color:var(--tx);font-weight:600}
+.nt{display:flex;gap:8px;align-items:flex-start;border-radius:12px;padding:10px 12px;margin:0 10px 10px;font-size:13px;line-height:1.45;background:var(--wb);color:var(--wt)}
+.sub2{margin-top:8px;padding-top:8px;border-top:1px solid var(--sep)}
+.lbl{font-size:12.5px;color:var(--hint);margin-bottom:6px}
+.acw{position:relative;flex:1}
+.acl{position:absolute;left:-12px;right:-12px;top:100%;z-index:20;background:var(--sec);border:1px solid var(--sep);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.18);max-height:240px;overflow:auto;display:none}
+.aci{padding:10px 12px;font-size:14px;border-bottom:1px solid var(--sep);cursor:pointer}
+.aci:last-child{border-bottom:none}
+.df{display:flex;align-items:center;gap:8px;flex:1}
+.df .in{letter-spacing:.03em}
+.cal{position:relative;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--accT);color:var(--acc);flex-shrink:0;font-size:17px}
+.cal input{position:absolute;inset:0;opacity:0;width:100%;height:100%}
+.dh{font-size:12px;color:var(--hint);margin:-2px 0 4px}
+.dh.bad{color:var(--dt)}
+.leg{border:1px solid var(--sep);border-radius:10px;padding:6px 10px;margin-bottom:8px}
+.legh{display:flex;justify-content:space-between;font-size:12px;color:var(--hint)}
+.lnk{border:none;background:transparent;color:var(--acc);font-size:14px;padding:6px 0}
+.more{display:flex;align-items:center;gap:6px;margin:2px 16px 10px;border:none;background:transparent;color:var(--acc);font-size:14px;padding:6px 2px}
+select{border:1px solid var(--sep);background:transparent;border-radius:8px;height:32px;padding:0 8px;font-size:14px}
+.ok{padding:40px 18px 10px;text-align:center}
+.oki{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:34px}
+.okt{font-size:19px;font-weight:600}
+.oks{font-size:14px;color:var(--hint);margin:8px 0 12px;line-height:1.5}
+.qr{width:180px;height:180px;object-fit:contain;border-radius:12px;background:#fff;padding:8px;display:block;margin:6px auto}
+.center{padding:60px 24px;text-align:center;color:var(--hint)}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="loading" class="center">…</div>
+<div id="fatal" class="center hide"></div>
+<div id="form" class="hide">
+  <div class="top">
+    <div class="logo" id="logo">✈️</div>
+    <div style="min-width:0">
+      <div class="ttl"><span data-i="hTitle"></span> · <span id="company"></span></div>
+      <div class="sub"><span class="dot" id="dot"></span><span id="hs"></span></div>
+    </div>
+    <div class="langs"><button class="lg" data-l="ru">RU</button><button class="lg" data-l="uz">UZ</button><button class="lg" data-l="en">EN</button></div>
+  </div>
+
+  <div class="seg" id="mode"><button class="on" data-m="pl">✈️ <span data-i="plane"></span></button><button data-m="tr">🚆 <span data-i="train"></span></button></div>
+  <div class="nt" data-only="tr"><span>⏱️</span><div data-i="trainNote"></div></div>
+
+  <div class="sec" id="urgBox" style="display:flex;align-items:center;gap:10px">
+    <span style="font-size:20px">⏰</span>
+    <div style="flex:1"><div style="font-size:14px;font-weight:600" data-i="urg"></div><div style="font-size:12px;color:var(--hint)" data-i="urgSub"></div></div>
+    <button class="sw red" id="urg" aria-label="urgent"></button>
+  </div>
+
+  <div class="st" data-i="sRoute"></div>
+  <div class="sec">
+    <div class="chips" id="trip" style="margin-bottom:6px"><button class="chip on" data-v="rt" data-i="rt"></button><button class="chip" data-v="ow" data-i="ow"></button><button class="chip" data-v="mc" data-only="pl" data-i="mc"></button></div>
+    <div id="simple">
+      <div class="rw"><span style="color:var(--hint)">●</span><div class="acw"><input class="in ac" id="from" data-p="pFrom" autocomplete="off"></div></div>
+      <div class="rw"><span style="color:var(--acc)">📍</span><div class="acw"><input class="in ac" id="to" data-p="pTo" autocomplete="off"></div></div>
+      <div class="rw"><span style="color:var(--hint);min-width:70px" data-i="dTo"></span><div class="df" id="df1"></div></div>
+      <div class="dh" id="dh1"></div>
+      <div id="d2w"><div class="rw" style="border-top:1px solid var(--sep)"><span style="color:var(--hint);min-width:70px" data-i="dBack"></span><div class="df" id="df2"></div></div><div class="dh" id="dh2"></div></div>
+    </div>
+    <div id="multi" class="hide"><div id="legs"></div><button class="lnk" id="addLeg" data-i="addLeg"></button></div>
+    <div class="rw"><span style="font-size:13px" data-i="flex"></span><button class="sw" id="flx" aria-label="flex"></button></div>
+  </div>
+  <div class="er" id="e1"></div>
+
+  <div class="nt" data-only="pl"><span>🪪</span><div><b data-i="ppT"></b><br><span data-i="ppB"></span> <span id="pp"></span></div></div>
+
+  <div class="st" data-i="sPax"></div>
+  <div class="sec">
+    <div class="rw"><span><span data-i="adults"></span> <span style="color:var(--hint);font-size:12px">12+</span></span><div class="cn"><button data-c="ad" data-d="-1">−</button><b id="ad">1</b><button data-c="ad" data-d="1">+</button></div></div>
+    <div class="rw"><span><span data-i="kids"></span> <span style="color:var(--hint);font-size:12px" data-i="u12"></span></span><div class="cn"><button data-c="ch" data-d="-1">−</button><b id="ch">0</b><button data-c="ch" data-d="1">+</button></div></div>
+    <div id="ages"></div>
+  </div>
+  <div class="er" id="e2"></div>
+
+  <div data-only="pl"><div class="st" data-i="sFare"></div>
+    <div class="sec"><div class="chips" id="fare"><button class="chip" data-v="bag" data-i="bag"></button><button class="chip" data-v="nobag" data-i="nobag"></button></div></div>
+    <div class="er" id="e3"></div></div>
+
+  <div class="st" data-i="sCls"></div>
+  <div class="sec">
+    <div class="chips" id="cls" data-only="pl"><button class="chip" data-v="eco" data-i="eco"></button><button class="chip" data-v="bus" data-i="bus"></button></div>
+    <div class="chips" id="tcls" data-only="tr"><button class="chip" data-v="eco" data-i="eco"></button><button class="chip" data-v="bus" data-i="bus"></button><button class="chip" data-v="vip">VIP</button></div>
+  </div>
+  <div class="er" id="e4"></div>
+
+  <div data-only="pl"><div class="st" data-i="sAdd"></div>
+    <div class="sec"><div class="chips" id="add"><button class="chip" data-v="seat">💺 <span data-i="seat"></span></button><button class="chip" data-v="xbag">🧳 <span data-i="xbag"></span></button><button class="chip" data-v="fast">⚡ <span data-i="fast"></span></button><button class="chip" data-v="ins">🛡️ <span data-i="ins"></span></button><button class="chip" data-v="upg">⬆️ <span data-i="upg"></span></button></div>
+      <div id="seatW" class="sub2 hide"><div class="lbl" data-i="seatQ"></div><div class="chips" id="seatP"><button class="chip" data-v="w" data-i="sW"></button><button class="chip" data-v="a" data-i="sA"></button><button class="chip" data-v="t" data-i="sT"></button></div></div>
+    </div></div>
+
+  <div data-only="tr"><div class="st" data-i="sTrain"></div>
+    <div class="sec"><div class="chips" id="tt"><button class="chip" data-v="afr" data-i="afr"></button><button class="chip" data-v="sharq" data-i="sharq"></button><button class="chip on" data-v="any" data-i="tAny"></button></div>
+      <div class="rw sub2"><span style="font-size:13px" data-i="fallback"></span><button class="sw on" id="fb" aria-label="fallback"></button></div></div></div>
+
+  <div class="st" data-i="sPay"></div>
+  <div class="sec"><div class="chips" id="pay"><button class="chip" data-v="bank">🏦 <span data-i="bank"></span></button><button class="chip" data-v="cash">💵 <span data-i="cash"></span></button><button class="chip" data-v="qr">📱 <span data-i="qr"></span></button></div>
+    <div id="payH" class="hide" style="font-size:12.5px;color:var(--hint);margin-top:8px"></div></div>
+  <div class="er" id="e5"></div>
+
+  <button class="more" id="more">⚙️ <span id="moreT"></span> <span id="moreI">▾</span></button>
+  <div id="moreBox" class="hide">
+    <div class="st" data-i="sPref"></div>
+    <div class="sec">
+      <div data-only="pl"><div class="chips" id="dir"><button class="chip" data-v="direct" data-i="direct"></button><button class="chip" data-v="via" data-i="via"></button></div>
+        <div id="layW" class="sub2 hide"><div class="lbl" data-i="lay"></div><div class="chips" id="lay"><button class="chip" data-v="3" data-i="l3"></button><button class="chip" data-v="6" data-i="l6"></button><button class="chip on" data-v="any" data-i="lAny"></button></div></div>
+        <div class="sub2"></div></div>
+      <div class="lbl" data-i="time"></div><div class="chips" id="tm"><button class="chip" data-v="m" data-i="m"></button><button class="chip" data-v="d" data-i="d"></button><button class="chip" data-v="e" data-i="e"></button></div>
+    </div>
+    <div class="st" data-i="sTour"></div>
+    <div class="sec"><div class="chips" id="ex"><button class="chip" data-v="hotel">🏨 <span data-i="hotel"></span></button><button class="chip" data-v="tr">🚗 <span data-i="tr"></span></button><button class="chip" data-v="visa" data-only="pl">🛂 <span data-i="visa"></span></button></div></div>
+    <div class="sec"><input class="in" id="cm" data-p="pCm" maxlength="500"></div>
+  </div>
+  <div class="er" id="e6" style="margin-top:6px"></div>
+  <button class="mb" id="send" data-i="send"></button>
+</div>
+
+<div id="ok" class="ok hide">
+  <div class="oki" id="okI"></div>
+  <div class="okt" id="okT"></div>
+  <div class="oks" id="okS"></div>
+  <div class="oks" id="okP" style="margin-top:0"></div>
+  <div id="qrBox" class="hide">
+    <img class="qr" id="qrImg" src="qr.png" alt="QR" onerror="this.classList.add('hide');document.getElementById('qrMiss').classList.remove('hide')">
+    <div id="qrMiss" class="hide oks" data-i="qrMiss"></div>
+    <div class="nt" style="margin:8px 0 0;text-align:left" data-i="qrWarn"></div>
+  </div>
+  <button class="mb" id="again" style="margin:16px 0 0;width:100%;background:transparent;color:var(--acc);border:1px solid var(--acc)" data-i="again"></button>
+</div>
+</div>
+
+<script>
+// === НАСТРОЙКА: вставьте сюда ссылку на веб-приложение Apps Script ===
+const API = 'https://script.google.com/macros/s/AKfycbztPBIRM3R96jkPyA6xnqB-kjd1JlDWtlkoBNNqpz1hURqv5yhWVS220LvdsXmmyln1WA/exec';
+// =====================================================================
+
+const HOL = ['2026-12-08','2026-12-31','2027-01-01','2027-03-08','2027-03-10','2027-03-21','2027-05-09','2027-05-17','2027-09-01','2027-10-01','2027-12-08'];
+
+const T = {
+ru:{hTitle:'Новая поездка',plane:'Самолёт',train:'Поезд',trainNote:'Билеты на «Афросиаб» раскупают очень быстро. Оставляйте заявку как можно раньше: если мест не будет, предложим другой поезд или авиарейс.',urg:'Срочно — выезд в ближайшие 24 часа',urgSub:'Менеджер сразу свяжется с вами',sRoute:'Маршрут',rt:'Туда-обратно',ow:'В одну сторону',mc:'Сложный маршрут',leg:'Перелёт',addLeg:'+ Добавить перелёт',pFrom:'Откуда',pTo:'Куда',dTo:'Туда',dBack:'Обратно',dPh:'ДД.ММ.ГГГГ',flex:'Даты гибкие ±3 дня',ppT:'Проверьте паспорта',ppB:'Паспорт каждого пассажира должен действовать минимум 6 месяцев после поездки.',ppD:'Для этой поездки — до',ppE:'или дольше.',sPax:'Пассажиры',adults:'Взрослые',kids:'Дети',u12:'до 12',age:'Возраст ребёнка',pick:'выбрать',y0:'до 1 года',y:n=>n+(n===1?' год':n<5?' года':' лет'),sFare:'Тариф · можно оба',bag:'Багаж / возвратный',nobag:'Без багажа / невозвратный',sCls:'Класс · можно несколько',eco:'Эконом',bus:'Бизнес',sAdd:'Допуслуги',seat:'Выбор места',xbag:'Доп. багаж',fast:'Fast Track / бизнес-зал',ins:'Страховка',upg:'Повышение класса',seatQ:'Какое место?',sW:'У окна',sA:'У прохода',sT:'Рядом вместе',sTrain:'Поезд',afr:'Афросиаб',sharq:'Шарк',tAny:'Любой',fallback:'Нет мест — предложить другой поезд или самолёт',sPay:'Способ оплаты',bank:'Перечисление',cash:'Наличные',qr:'QR-код',bankH:'Счёт или договор подготовит наша бухгалтерия',cashH:'Оплата наличными в офисе ALFA',qrH:'После подтверждения суммы оплатите по QR и пришлите скрин или квитанцию',more:'Ещё пожелания',less:'Свернуть',sPref:'Пожелания',direct:'Прямой',via:'С пересадкой',lay:'Пересадка не дольше',l3:'3 часов',l6:'6 часов',lAny:'Не важно',time:'Время отправления',m:'Утро',d:'День',e:'Вечер',sTour:'Услуги ALFA TOUR',hotel:'Отель',tr:'Трансфер',visa:'Виза',pCm:'Комментарий',send:'Отправить заявку',sending:'Отправляем…',e1:'Укажите направление и даты',e1m:'Заполните все перелёты: откуда, куда и дату',eDate:'Проверьте даты',e2:'Выберите возраст каждого ребёнка',e3:'Выберите хотя бы один тариф',e4:'Выберите хотя бы один класс',e5:'Выберите способ оплаты',eNet:'Не удалось отправить. Проверьте интернет и попробуйте ещё раз.',eAuth:'Откройте форму через кнопку «Оставить заявку» в Telegram-группе.',eClient:'Ссылка устарела. Попросите менеджера ALFA обновить кнопку в группе.',bad:'Такой даты нет',past:'Эта дата уже прошла',order:'Раньше даты вылета',wd:['вс','пн','вт','ср','чт','пт','сб'],mo:['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'],hOpen:'Сейчас на связи · ответим за 15 минут',hEve:'На связи 24/7 · ответим в течение часа',hNight:'На связи 24/7 · ответим в ближайшее время',okT:n=>'Заявка №'+n+' отправлена',okOpen:'Менеджер пришлёт варианты в вашу группу за 15 минут',okEve:'Ответим в течение часа — варианты придут в вашу группу',okNight:'Заявка уже у нас — ответим в ближайшее время. Если вылет сегодня, включите «Срочно», и мы сразу позвоним.',okU:'Дежурный менеджер позвонит в течение 15 минут',okUN:'Срочная заявка принята — мы уже получили сигнал и свяжемся с вами как можно быстрее',okBank:'Оплата перечислением: счёт пришлём в группу вместе с билетом.',okCash:'Оплата наличными: менеджер подскажет, где и когда удобно оплатить.',okQr:'Оплата по QR-коду:',qrMiss:'QR-код пришлёт менеджер в группу.',qrWarn:'Оплачивайте только после того, как менеджер подтвердит сумму. После оплаты отправьте скрин или квитанцию ответом на карточку заявки в группе.',again:'Новая заявка'},
+uz:{hTitle:'Yangi safar',plane:'Samolyot',train:'Poyezd',trainNote:'«Afrosiyob» chiptalari juda tez sotilib ketadi. Arizani imkon qadar ertaroq qoldiring: joy boʻlmasa, boshqa poyezd yoki reys taklif qilamiz.',urg:'Shoshilinch — 24 soat ichida joʻnash',urgSub:'Menejer darhol siz bilan bogʻlanadi',sRoute:'Yoʻnalish',rt:'Borish-qaytish',ow:'Bir tomonga',mc:'Murakkab yoʻnalish',leg:'Parvoz',addLeg:'+ Parvoz qoʻshish',pFrom:'Qayerdan',pTo:'Qayerga',dTo:'Borish',dBack:'Qaytish',dPh:'KK.OO.YYYY',flex:'Sanalar moslashuvchan ±3 kun',ppT:'Pasportlarni tekshiring',ppB:'Har bir yoʻlovchining pasporti safardan keyin kamida 6 oy amal qilishi kerak.',ppD:'Bu safar uchun —',ppE:'gacha yoki undan uzoqroq.',sPax:'Yoʻlovchilar',adults:'Kattalar',kids:'Bolalar',u12:'12 yoshgacha',age:'Bola yoshi',pick:'tanlang',y0:'1 yoshgacha',y:n=>n+' yosh',sFare:'Tarif · ikkalasi ham mumkin',bag:'Bagaj / qaytariladigan',nobag:'Bagajsiz / qaytarilmaydigan',sCls:'Klass · bir nechtasi mumkin',eco:'Ekonom',bus:'Biznes',sAdd:'Qoʻshimcha xizmatlar',seat:'Joy tanlash',xbag:'Qoʻshimcha bagaj',fast:'Fast Track / biznes-zal',ins:'Sugʻurta',upg:'Klassni oshirish',seatQ:'Qanday joy?',sW:'Deraza yonida',sA:'Yoʻlak yonida',sT:'Yonma-yon',sTrain:'Poyezd',afr:'Afrosiyob',sharq:'Sharq',tAny:'Farqi yoʻq',fallback:'Joy boʻlmasa — boshqa poyezd yoki samolyot taklif qilinsin',sPay:'Toʻlov usuli',bank:'Pul oʻtkazish',cash:'Naqd pul',qr:'QR-kod',bankH:'Hisob yoki shartnomani buxgalteriyamiz tayyorlaydi',cashH:'ALFA ofisida naqd toʻlov',qrH:'Summa tasdiqlangach QR orqali toʻlang va skrinshot yoki kvitansiyani yuboring',more:'Qoʻshimcha istaklar',less:'Yigʻish',sPref:'Istaklar',direct:'Toʻgʻridan-toʻgʻri',via:'Qoʻnib oʻtish bilan',lay:'Kutish vaqti koʻpi bilan',l3:'3 soat',l6:'6 soat',lAny:'Farqi yoʻq',time:'Joʻnash vaqti',m:'Ertalab',d:'Kunduzi',e:'Kechqurun',sTour:'ALFA TOUR xizmatlari',hotel:'Mehmonxona',tr:'Transfer',visa:'Viza',pCm:'Izoh',send:'Arizani yuborish',sending:'Yuborilmoqda…',e1:'Yoʻnalish va sanalarni kiriting',e1m:'Barcha parvozlarni toʻldiring: qayerdan, qayerga va sana',eDate:'Sanalarni tekshiring',e2:'Har bir bolaning yoshini tanlang',e3:'Kamida bitta tarifni tanlang',e4:'Kamida bitta klassni tanlang',e5:'Toʻlov usulini tanlang',eNet:'Yuborib boʻlmadi. Internetni tekshirib, qayta urinib koʻring.',eAuth:'Formani Telegram-guruhdagi «Ariza qoldirish» tugmasi orqali oching.',eClient:'Havola eskirgan. ALFA menejeridan guruhdagi tugmani yangilashni soʻrang.',bad:'Bunday sana yoʻq',past:'Bu sana oʻtib ketgan',order:'Joʻnash sanasidan oldin',wd:['yak','dush','sesh','chor','pay','jum','shan'],mo:['yanvar','fevral','mart','aprel','may','iyun','iyul','avgust','sentabr','oktabr','noyabr','dekabr'],hOpen:'Hozir aloqadamiz · 15 daqiqada javob beramiz',hEve:'24/7 aloqadamiz · bir soat ichida javob beramiz',hNight:'24/7 aloqadamiz · tez orada javob beramiz',okT:n=>'№'+n+' ariza yuborildi',okOpen:'Menejer 15 daqiqada guruhingizga variantlar yuboradi',okEve:'Bir soat ichida javob beramiz — variantlar guruhingizga keladi',okNight:'Ariza bizda — tez orada javob beramiz. Agar bugun uchsangiz, «Shoshilinch»ni yoqing, darhol qoʻngʻiroq qilamiz.',okU:'Navbatchi menejer 15 daqiqa ichida qoʻngʻiroq qiladi',okUN:'Shoshilinch ariza qabul qilindi — signal bizga yetdi, imkon qadar tez bogʻlanamiz',okBank:'Pul oʻtkazish: toʻlov uchun hisobni chipta bilan birga guruhga yuboramiz.',okCash:'Naqd pul: menejer qayerda va qachon toʻlash qulayligini aytadi.',okQr:'QR-kod orqali toʻlov:',qrMiss:'QR-kodni menejer guruhga yuboradi.',qrWarn:'Faqat menejer summani tasdiqlagandan keyin toʻlang. Toʻlovdan soʻng skrinshot yoki kvitansiyani guruhdagi ariza kartochkasiga javob qilib yuboring.',again:'Yangi ariza'},
+en:{hTitle:'New trip',plane:'Flight',train:'Train',trainNote:'Afrosiyob tickets sell out very fast. Send your request as early as possible: if it’s sold out, we’ll offer another train or a flight.',urg:'Urgent — departure within 24 hours',urgSub:'Your manager will contact you right away',sRoute:'Route',rt:'Round trip',ow:'One way',mc:'Multi-city',leg:'Flight',addLeg:'+ Add flight',pFrom:'From',pTo:'To',dTo:'Depart',dBack:'Return',dPh:'DD.MM.YYYY',flex:'Flexible dates ±3 days',ppT:'Check your passports',ppB:'Each passport must be valid for at least 6 months after the trip.',ppD:'For this trip — until',ppE:'or later.',sPax:'Passengers',adults:'Adults',kids:'Children',u12:'under 12',age:'Child age',pick:'select',y0:'under 1',y:n=>n+(n===1?' year':' years'),sFare:'Fare · both allowed',bag:'Baggage / refundable',nobag:'No baggage / non-refundable',sCls:'Class · several allowed',eco:'Economy',bus:'Business',sAdd:'Add-ons',seat:'Seat selection',xbag:'Extra baggage',fast:'Fast Track / lounge',ins:'Insurance',upg:'Upgrade',seatQ:'Which seat?',sW:'Window',sA:'Aisle',sT:'Together',sTrain:'Train',afr:'Afrosiyob',sharq:'Sharq',tAny:'Any',fallback:'If sold out — offer another train or a flight',sPay:'Payment',bank:'Bank transfer',cash:'Cash',qr:'QR code',bankH:'Our accounting team will prepare the invoice or contract',cashH:'Cash payment at the ALFA office',qrH:'After the amount is confirmed, pay by QR and send a screenshot or receipt',more:'More preferences',less:'Collapse',sPref:'Preferences',direct:'Direct',via:'With a layover',lay:'Layover no longer than',l3:'3 hours',l6:'6 hours',lAny:'Any',time:'Departure time',m:'Morning',d:'Afternoon',e:'Evening',sTour:'ALFA TOUR services',hotel:'Hotel',tr:'Transfer',visa:'Visa',pCm:'Comments',send:'Send request',sending:'Sending…',e1:'Enter the route and dates',e1m:'Fill in every flight: from, to and date',eDate:'Check the dates',e2:'Select each child’s age',e3:'Select at least one fare',e4:'Select at least one class',e5:'Choose a payment method',eNet:'Couldn’t send. Check your connection and try again.',eAuth:'Open the form with the “Send request” button in your Telegram group.',eClient:'This link is outdated. Ask your ALFA manager to refresh the button in the group.',bad:'Invalid date',past:'This date has passed',order:'Before departure date',wd:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],mo:['January','February','March','April','May','June','July','August','September','October','November','December'],hOpen:'Online now · reply within 15 min',hEve:'Available 24/7 · reply within an hour',hNight:'Available 24/7 · we’ll reply soon',okT:n=>'Request #'+n+' sent',okOpen:'Your manager will send options to your group within 15 minutes',okEve:'We’ll reply within an hour — options will arrive in your group',okNight:'We’ve got your request and will reply soon. If you’re flying today, turn on Urgent and we’ll call right away.',okU:'The on-duty manager will call you within 15 minutes',okUN:'Urgent request received — we’ve been alerted and will contact you as soon as possible',okBank:'Bank transfer: we’ll send the invoice to your group together with the ticket.',okCash:'Cash: your manager will tell you where and when to pay.',okQr:'Payment by QR code:',qrMiss:'Your manager will send the QR code to the group.',qrWarn:'Pay only after your manager confirms the amount. Then send a screenshot or receipt as a reply to the request card in your group.',again:'New request'}};
+const RU = T.ru;
+
+const tg = window.Telegram && Telegram.WebApp;
+const $ = id => document.getElementById(id);
+const qs = (sel, el) => [...(el || document).querySelectorAll(sel)];
+let L = 'ru', M = 'pl', moreOpen = false, PL = [], ST = [], CODE = '';
+const s = { ad: 1, ch: 0 };
+let legs = [];
+
+// ---------- Тема Telegram ----------
+function rgba(hex, a) { const m = /^#?([0-9a-f]{6})$/i.exec(hex || ''); if (!m) return ''; const n = parseInt(m[1], 16); return 'rgba(' + (n >> 16) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')'; }
+function theme() {
+  if (!tg) return;
+  const p = tg.themeParams || {}, r = document.documentElement.style, dark = tg.colorScheme === 'dark';
+  const set = (k, v) => { if (v) r.setProperty(k, v); };
+  set('--bg', p.secondary_bg_color); set('--sec', p.section_bg_color || p.bg_color); set('--tx', p.text_color); set('--hint', p.hint_color);
+  set('--acc', p.link_color || p.button_color); set('--btn', p.button_color); set('--btx', p.button_text_color);
+  set('--accT', rgba(p.link_color || p.button_color, .14));
+  if (dark) { set('--wb', 'rgba(255,190,60,.16)'); set('--wt', '#f5c56b'); set('--db', 'rgba(255,90,80,.16)'); set('--dt', '#ff8a80'); set('--ob', 'rgba(80,220,120,.16)'); set('--ot', '#7fd99a'); }
+  try { tg.setHeaderColor('secondary_bg_color'); tg.setBackgroundColor('secondary_bg_color'); } catch (e) {}
+}
+
+// ---------- Время Ташкента ----------
+function tashParts() {
+  const now = new Date();
+  const date = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Tashkent', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
+  const p = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Tashkent', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(now);
+  const wd = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(p.find(x => x.type === 'weekday').value);
+  const h = (+p.find(x => x.type === 'hour').value % 24) + (+p.find(x => x.type === 'minute').value) / 60;
+  return { date, wd, h };
+}
+function period() {
+  const { date, wd, h } = tashParts();
+  if (h < 9) return 'night';
+  if (HOL.includes(date)) return 'eve';
+  if ((wd >= 1 && wd <= 5 && h >= 10 && h < 18) || (wd === 6 && h >= 10 && h < 16)) return 'open';
+  return 'eve';
+}
+function today() { return new Date(tashParts().date + 'T00:00:00'); }
+
+// ---------- Даты ----------
+function mask(v) { const d = v.replace(/\D/g, '').slice(0, 8); let o = d.slice(0, 2); if (d.length > 2) o += '.' + d.slice(2, 4); if (d.length > 4) o += '.' + d.slice(4); return o; }
+function parseD(v) { const m = /^(\d{2})\.(\d{2})\.(\d{4})$/.exec(v || ''); if (!m) return null; const d = new Date(+m[3], +m[2] - 1, +m[1]); return d.getDate() === +m[1] && d.getMonth() === +m[2] - 1 ? d : null; }
+const iso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+const fmt = d => String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + d.getFullYear();
+function dateField(holder, onChange) {
+  holder.innerHTML = '<input class="in" inputmode="numeric" maxlength="10"><label class="cal">📅<input type="date" tabindex="-1"></label>';
+  const tx = holder.querySelector('.in'), c = holder.querySelector('input[type=date]');
+  tx.placeholder = T[L].dPh;
+  tx.addEventListener('input', () => { tx.value = mask(tx.value); onChange(); });
+  c.addEventListener('change', () => { if (c.value) { const [y, m, d] = c.value.split('-'); tx.value = d + '.' + m + '.' + y; onChange(); } });
+  return { tx, c };
+}
+function dateHint(el, v, min) {
+  el.className = 'dh'; el.textContent = '';
+  if (!v) return true;
+  if (v.length < 10) return false;
+  const d = parseD(v), t = T[L];
+  if (!d) { el.textContent = t.bad; el.className = 'dh bad'; return false; }
+  if (d < today()) { el.textContent = t.past; el.className = 'dh bad'; return false; }
+  if (min && d < min) { el.textContent = t.order; el.className = 'dh bad'; return false; }
+  el.textContent = t.wd[d.getDay()] + ', ' + d.getDate() + ' ' + t.mo[d.getMonth()] + ' ' + d.getFullYear();
+  return true;
+}
+
+// ---------- Подсказки городов ----------
+function attachAC(inp) {
+  const list = document.createElement('div'); list.className = 'acl'; inp.parentNode.appendChild(list);
+  const li = { ru: 0, uz: 1, en: 2 };
+  const show = () => {
+    const q = inp.value.trim().toLowerCase(); const src = M === 'tr' ? ST : PL;
+    if (q.length < 2) { list.style.display = 'none'; return; }
+    const res = src.filter(p => p[3].includes(q) || p[li[L]].toLowerCase().includes(q)).slice(0, 8);
+    if (!res.length) { list.style.display = 'none'; return; }
+    list.innerHTML = ''; res.forEach(p => { const d = document.createElement('div'); d.className = 'aci'; d.textContent = p[li[L]];
+      d.addEventListener('mousedown', e => { e.preventDefault(); inp.value = p[li[L]]; inp.dataset.ru = p[0]; list.style.display = 'none'; inp.dispatchEvent(new Event('change')); }); list.appendChild(d); });
+    list.style.display = 'block';
+  };
+  inp.addEventListener('input', () => { inp.dataset.ru = ''; show(); clr(); });
+  inp.addEventListener('focus', show);
+  inp.addEventListener('blur', () => setTimeout(() => list.style.display = 'none', 150));
+}
+const ruVal = inp => (inp.dataset.ru || inp.value).trim();
+
+// ---------- Чипы и переключатели ----------
+const on = id => qs('.chip.on', $(id)).map(b => b.dataset.v);
+const trip = () => on('trip')[0];
+function chips(id, multi, cb) {
+  $(id).addEventListener('click', e => { const b = e.target.closest('.chip'); if (!b) return;
+    if (multi) b.classList.toggle('on'); else { qs('.chip', $(id)).forEach(x => x.classList.remove('on')); b.classList.add('on'); }
+    if (cb) cb(); clr(); });
+}
+function sw(id, cb) { $(id).addEventListener('click', () => { $(id).classList.toggle('on'); if (cb) cb(); }); }
+const swOn = id => $(id).classList.contains('on');
+function clr() { ['e1','e2','e3','e4','e5','e6'].forEach(i => $(i).textContent = ''); }
+
+// ---------- Отрисовка ----------
+let D1, D2;
+function tr() {
+  const t = T[L];
+  qs('[data-i]').forEach(e => { const v = t[e.dataset.i]; if (typeof v === 'string') e.textContent = v; });
+  qs('[data-p]').forEach(e => e.placeholder = t[e.dataset.p]);
+  qs('.df .in').forEach(e => e.placeholder = t.dPh);
+  qs('.lg').forEach(b => b.classList.toggle('on', b.dataset.l === L));
+  $('moreT').textContent = moreOpen ? t.less : t.more;
+  hdr(); payHint(); ages(); renderLegs(); checkDates();
+  document.documentElement.lang = L;
+}
+function hdr() { const t = T[L], p = period(); $('hs').textContent = p === 'open' ? t.hOpen : p === 'eve' ? t.hEve : t.hNight; $('dot').style.background = p === 'open' ? '#34c759' : 'var(--acc)'; }
+function payHint() { const v = on('pay')[0], h = $('payH'); h.classList.toggle('hide', !v); if (v) h.textContent = T[L][v + 'H']; }
+function applyMode() {
+  qs('[data-only]').forEach(e => e.classList.toggle('hide', e.dataset.only !== M));
+  $('logo').textContent = M === 'tr' ? '🚆' : '✈️';
+  if (M === 'tr' && trip() === 'mc') setTrip('rt');
+  syncTrip(); clr();
+}
+function setTrip(v) { qs('.chip', $('trip')).forEach(x => x.classList.toggle('on', x.dataset.v === v)); }
+function syncTrip() { const v = trip(); $('simple').classList.toggle('hide', v === 'mc'); $('multi').classList.toggle('hide', v !== 'mc'); $('d2w').classList.toggle('hide', v !== 'rt'); checkDates(); }
+function ages() {
+  const t = T[L], a = $('ages'), cur = qs('select', a).map(x => x.value); a.innerHTML = '';
+  for (let i = 0; i < s.ch; i++) { let o = '<option value="">' + t.pick + '</option>'; for (let y = 0; y < 12; y++) o += '<option value="' + y + '">' + (y === 0 ? t.y0 : t.y(y)) + '</option>';
+    const r = document.createElement('div'); r.className = 'rw'; r.innerHTML = '<span style="color:var(--hint)">' + t.age + ' ' + (i + 1) + '</span><select>' + o + '</select>'; a.appendChild(r);
+    const q = r.querySelector('select'); if (cur[i] !== undefined) q.value = cur[i]; q.onchange = clr; }
+}
+function renderLegs() {
+  const t = T[L], w = $('legs'); w.innerHTML = '';
+  legs.forEach((g, i) => {
+    const d = document.createElement('div'); d.className = 'leg';
+    d.innerHTML = '<div class="legh"><span>' + t.leg + ' ' + (i + 1) + '</span>' + (legs.length > 2 ? '<button class="lnk" data-x="' + i + '" style="padding:0 4px">✕</button>' : '') + '</div>' +
+      '<div class="rw"><div class="acw"><input class="in ac" data-k="f" placeholder="' + t.pFrom + '" autocomplete="off"></div></div>' +
+      '<div class="rw"><div class="acw"><input class="in ac" data-k="t" placeholder="' + t.pTo + '" autocomplete="off"></div></div>' +
+      '<div class="rw"><div class="df"></div></div><div class="dh"></div>';
+    w.appendChild(d);
+    const f = d.querySelector('[data-k=f]'), to = d.querySelector('[data-k=t]');
+    f.value = g.f; f.dataset.ru = g.fr || ''; to.value = g.t; to.dataset.ru = g.tr || '';
+    attachAC(f); attachAC(to);
+    const sync = () => { g.f = f.value; g.fr = f.dataset.ru; g.t = to.value; g.tr = to.dataset.ru; };
+    f.addEventListener('input', sync); f.addEventListener('change', sync); to.addEventListener('input', sync);
+    to.addEventListener('change', () => { sync(); const n = legs[i + 1]; if (n && !n.f) { n.f = g.t; n.fr = g.tr; renderLegs(); } });
+    const df = dateField(d.querySelector('.df'), () => { g.d = df.tx.value; checkDates(); clr(); });
+    df.tx.value = g.d || '';
+    g.el = { tx: df.tx, c: df.c, h: d.querySelector('.dh') };
+  });
+  qs('[data-x]', w).forEach(b => b.onclick = () => { legs.splice(+b.dataset.x, 1); renderLegs(); });
+  $('addLeg').classList.toggle('hide', legs.length >= 5);
+  checkDates();
+}
+function checkDates() {
+  if (!D1) return true;
+  let ok = true, last = null;
+  const t0 = iso(today());
+  if (trip() === 'mc') {
+    let prev = null;
+    legs.forEach(g => { if (!g.el) return; g.el.c.min = prev ? iso(prev) : t0; if (!dateHint(g.el.h, g.d, prev)) ok = false; const d = parseD(g.d); if (d) { prev = d; last = d; } });
+  } else {
+    D1.c.min = t0;
+    const a = dateHint($('dh1'), D1.tx.value, null); const d1 = parseD(D1.tx.value);
+    D2.c.min = d1 ? iso(d1) : t0;
+    const b = trip() === 'rt' ? dateHint($('dh2'), D2.tx.value, d1) : true;
+    ok = a && b;
+    last = (trip() === 'rt' && parseD(D2.tx.value)) || d1;
+  }
+  if (last && ok) { const d = new Date(last); d.setMonth(d.getMonth() + 6); $('pp').innerHTML = T[L].ppD + ' <b>' + fmt(d) + '</b> ' + T[L].ppE; } else $('pp').textContent = '';
+  return ok;
+}
+
+// ---------- Сбор заявки ----------
+function collect() {
+  const t = T[L]; clr(); let g = true; const mc = trip() === 'mc';
+  if (mc) { if (legs.some(x => !x.f.trim() || !x.t.trim() || !x.d)) { $('e1').textContent = t.e1m; g = false; } }
+  else if (!ruVal($('from')) || !ruVal($('to')) || !D1.tx.value || (trip() === 'rt' && !D2.tx.value)) { $('e1').textContent = t.e1; g = false; }
+  if (g && !checkDates()) { $('e1').textContent = t.eDate; g = false; }
+  const ag = qs('select', $('ages')).map(x => x.value);
+  if (ag.includes('')) { $('e2').textContent = t.e2; g = false; }
+  if (M === 'pl' && !on('fare').length) { $('e3').textContent = t.e3; g = false; }
+  const cls = on(M === 'tr' ? 'tcls' : 'cls');
+  if (!cls.length) { $('e4').textContent = t.e4; g = false; }
+  const pay = on('pay')[0];
+  if (!pay) { $('e5').textContent = t.e5; g = false; }
+  if (!g) { const e = qs('.er').find(x => x.textContent); if (e) e.scrollIntoView({ behavior: 'smooth', block: 'center' }); return null; }
+
+  const lbl = v => RU[v] || v.toUpperCase();
+  const route = mc ? legs.map(x => (x.fr || x.f) + ' → ' + (x.tr || x.t) + ' (' + x.d + ')').join('; ') : ruVal($('from')) + ' → ' + ruVal($('to'));
+  const flex = swOn('flx') ? ' (гибкие ±3 дня)' : '';
+  const dates = mc ? (flex ? 'гибкие ±3 дня' : '') : D1.tx.value + (trip() === 'rt' ? ' – ' + D2.tx.value : '') + flex;
+  const kids = ag.map(a => a === '0' ? 'до 1 г.' : a + ' л.');
+  const pax = 'Взрослых: ' + s.ad + (kids.length ? '; дети: ' + kids.join(', ') : '');
+  const seatMap = { w: 'sW', a: 'sA', t: 'sT' };
+  const add = on('add').map(v => v === 'seat' ? RU.seat + (on('seatP').length ? ' (' + on('seatP').map(x => RU[seatMap[x]]).join(', ').toLowerCase() + ')' : '') : lbl(v));
+  const prefs = [];
+  if (M === 'pl' && on('dir').length) prefs.push(on('dir').map(lbl).join(' или '));
+  if (M === 'pl' && on('dir').includes('via') && on('lay')[0] !== 'any') prefs.push('пересадка до ' + lbl('l' + on('lay')[0]));
+  if (on('tm').length) prefs.push('время: ' + on('tm').map(lbl).join(', ').toLowerCase());
+  const tv = on('tt')[0];
+  const train = M === 'tr' ? lbl(tv === 'any' ? 'tAny' : tv) + '; нет мест — ' + (swOn('fb') ? 'предложить другой поезд или самолёт' : 'не предлагать замену') : '';
+  const clsTxt = cls.map(lbl).join(' + ');
+  const shortRoute = mc ? legs.map(x => x.fr || x.f).concat([legs[legs.length - 1].tr || legs[legs.length - 1].t]).join(' → ') : route;
+  const short = shortRoute + ' · ' + (mc ? legs[0].d : D1.tx.value + (trip() === 'rt' ? ' – ' + D2.tx.value : '')) + ' · ' + s.ad + ' взр.' + (kids.length ? ' + ' + kids.length + ' реб.' : '') + ' · ' + clsTxt;
+  return {
+    mode: M === 'tr' ? 'Поезд' : 'Самолёт', trip: RU[trip()], route, dates, pax,
+    fare: M === 'pl' ? on('fare').map(lbl).join(' + ') : '', cls: clsTxt,
+    add: M === 'pl' ? add.join(', ') : '', train, prefs: prefs.join('; '),
+    tour: on('ex').filter(v => M === 'pl' || v !== 'visa').map(lbl).join(', '),
+    comment: $('cm').value.trim(), pay: RU[pay], payKey: pay,
+    urgent: swOn('urg'), period: period(), short
+  };
+}
+
+async function send() {
+  const data = collect(); if (!data) return;
+  const t = T[L], b = $('send');
+  b.disabled = true; b.textContent = t.sending;
+  try {
+    const r = await fetch(API, { method: 'POST', body: JSON.stringify({ kind: 'request', code: CODE, initData: tg ? tg.initData : '', data }) });
+    const j = await r.json();
+    if (!j.ok) { $('e6').textContent = j.error === 'auth' ? t.eAuth : j.error === 'client' ? t.eClient : t.eNet; return; }
+    try { tg && tg.HapticFeedback && tg.HapticFeedback.notificationOccurred('success'); } catch (e) {}
+    showOk(j.id, data);
+  } catch (e) { $('e6').textContent = t.eNet; }
+  finally { b.disabled = false; b.textContent = t.send; }
+}
+let last = null;
+function showOk(id, data) { last = { id, urgent: data.urgent, p: data.period, pay: data.payKey }; okFill(); $('form').classList.add('hide'); $('ok').classList.remove('hide'); window.scrollTo(0, 0); }
+function okFill() {
+  if (!last) return;
+  const t = T[L], p = last.p; let S, ic, bg, col;
+  if (last.urgent) { S = p === 'night' ? t.okUN : t.okU; ic = '📞'; bg = 'var(--db)'; col = 'var(--dt)'; }
+  else { S = p === 'open' ? t.okOpen : p === 'eve' ? t.okEve : t.okNight; ic = p === 'night' ? '🌙' : '✓'; bg = p === 'night' ? 'var(--accT)' : 'var(--ob)'; col = p === 'night' ? 'var(--acc)' : 'var(--ot)'; }
+  $('okT').textContent = t.okT(last.id); $('okS').textContent = S;
+  $('okP').textContent = last.pay === 'bank' ? t.okBank : last.pay === 'cash' ? t.okCash : t.okQr;
+  $('qrBox').classList.toggle('hide', last.pay !== 'qr');
+  const e = $('okI'); e.style.background = bg; e.style.color = col; e.textContent = ic;
+}
+
+// ---------- Запуск ----------
+function fatal(msg) { $('loading').classList.add('hide'); $('fatal').textContent = msg; $('fatal').classList.remove('hide'); }
+async function init() {
+  theme();
+  try { const saved = localStorage.getItem('alfa_lang'); if (saved && T[saved]) L = saved; else if (tg && tg.initDataUnsafe.user && tg.initDataUnsafe.user.language_code === 'uz') L = 'uz'; } catch (e) {}
+  if (tg) { tg.ready(); tg.expand(); }
+  CODE = (tg && tg.initDataUnsafe.start_param) || new URLSearchParams(location.search).get('c') || '';
+  $('loading').textContent = { ru: 'Загрузка…', uz: 'Yuklanmoqda…', en: 'Loading…' }[L];
+  if (!CODE) return fatal(T[L].eAuth);
+  try {
+    const r = await fetch(API + '?a=init&c=' + encodeURIComponent(CODE)); const j = await r.json();
+    if (!j.ok) return fatal(j.error === 'client' ? T[L].eClient : T[L].eNet);
+    PL = j.places || []; ST = j.stations || []; $('company').textContent = j.company;
+  } catch (e) { return fatal(T[L].eNet); }
+
+  D1 = dateField($('df1'), () => { checkDates(); clr(); });
+  D2 = dateField($('df2'), () => { checkDates(); clr(); });
+  const fromDef = PL.find(p => p[3].includes('tas') && p[3].includes('ташкент'));
+  if (fromDef) { $('from').value = fromDef[0]; $('from').dataset.ru = fromDef[0]; }
+  attachAC($('from')); attachAC($('to'));
+  legs = [{ f: $('from').value, fr: $('from').dataset.ru, t: '', tr: '', d: '' }, { f: '', fr: '', t: '', tr: '', d: '' }];
+
+  qs('.lg').forEach(b => b.onclick = () => { L = b.dataset.l; try { localStorage.setItem('alfa_lang', L); } catch (e) {} tr(); okFill(); });
+  $('mode').onclick = e => { const b = e.target.closest('button'); if (!b) return; qs('button', $('mode')).forEach(x => x.classList.remove('on')); b.classList.add('on'); M = b.dataset.m;
+    const st = M === 'tr' ? ST.find(p => p[0] === 'Ташкент') : PL.find(p => p[3].includes('tas') && p[3].includes('ташкент'));
+    $('from').value = st ? st[{ ru: 0, uz: 1, en: 2 }[L]] : ''; $('from').dataset.ru = st ? st[0] : ''; $('to').value = ''; $('to').dataset.ru = ''; applyMode(); };
+  chips('trip', 0, syncTrip); chips('lay'); chips('tt'); chips('seatP'); chips('pay', 0, payHint);
+  chips('dir', 1, () => $('layW').classList.toggle('hide', !on('dir').includes('via')));
+  chips('add', 1, () => $('seatW').classList.toggle('hide', !on('add').includes('seat')));
+  ['fare', 'cls', 'tcls', 'tm', 'ex'].forEach(i => chips(i, 1));
+  sw('urg', () => $('urgBox').style.background = swOn('urg') ? 'var(--db)' : ''); sw('flx'); sw('fb');
+  $('more').onclick = () => { moreOpen = !moreOpen; $('moreBox').classList.toggle('hide', !moreOpen); $('moreI').textContent = moreOpen ? '▴' : '▾'; $('moreT').textContent = moreOpen ? T[L].less : T[L].more; };
+  qs('[data-c]').forEach(b => b.onclick = () => { const k = b.dataset.c, v = s[k] + +b.dataset.d; if (v < (k === 'ad' ? 1 : 0) || v > 9) return; s[k] = v; $(k).textContent = v; if (k === 'ch') ages(); clr(); });
+  $('addLeg').onclick = () => { const p = legs[legs.length - 1]; legs.push({ f: p.t || '', fr: p.tr || '', t: '', tr: '', d: '' }); renderLegs(); };
+  $('send').onclick = send;
+  $('again').onclick = () => { $('ok').classList.add('hide'); $('form').classList.remove('hide'); window.scrollTo(0, 0); };
+
+  $('loading').classList.add('hide'); $('form').classList.remove('hide');
+  applyMode(); tr();
+  setInterval(hdr, 60000);
+}
+init();
+</script>
+</body>
+</html>
