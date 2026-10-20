@@ -428,7 +428,7 @@ async function init() {
   $('loading').textContent = { ru: 'Загрузка…', uz: 'Yuklanmoqda…', en: 'Loading…' }[L];
   if (!CODE) return fatal(T[L].eAuth);
   try {
-    const r = await fetch(API + '?a=init&c=' + encodeURIComponent(CODE)); const j = await r.json();
+    const r = await fetch(API + '?a=init&code=' + encodeURIComponent(CODE)); const j = await r.json();
     if (!j.ok) return fatal(j.error === 'client' ? T[L].eClient : T[L].eNet);
     PL = j.places || []; ST = j.stations || []; $('company').textContent = j.company;
   } catch (e) { return fatal(T[L].eNet); }
