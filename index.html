@@ -432,11 +432,24 @@ async function init() {
   CODE = (tg && tg.initDataUnsafe.start_param) || new URLSearchParams(location.search).get('c') || '';
   $('loading').textContent = { ru: 'Загрузка…', uz: 'Yuklanmoqda…', en: 'Loading…' }[L];
   if (!CODE) return fatal(T[L].eAuth);
-  try {
-    const r = await fetch(API + '?a=init&code=' + encodeURIComponent(CODE)); const j = await r.json();
-    if (!j.ok) return fatal(j.error === 'client' ? T[L].eClient : T[L].eNet);
-    PL = j.places || []; ST = j.stations || []; $('company').textContent = j.company;
-  } catch (e) { return fatal(T[L].eNet); }
+  const KEY = 'alfa_init_' + CODE;
+  const load = () => fetch(API + '?a=init&code=' + encodeURIComponent(CODE)).then(r => r.json());
+  const apply = j => { PL = j.places || []; ST = j.stations || []; $('company').textContent = j.company; };
+  let cached = null;
+  try { cached = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+  if (cached && cached.places && cached.places.length) {
+    apply(cached); // мгновенно из памяти телефона, а свежие данные — в фоне
+    load().then(j => {
+      if (!j.ok) { if (j.error === 'client') { try { localStorage.removeItem(KEY); } catch (e) {} fatal(T[L].eClient); } return; }
+      apply(j); try { localStorage.setItem(KEY, JSON.stringify(j)); } catch (e) {}
+    }).catch(() => {});
+  } else {
+    try {
+      const j = await load();
+      if (!j.ok) return fatal(j.error === 'client' ? T[L].eClient : T[L].eNet);
+      apply(j); try { localStorage.setItem(KEY, JSON.stringify(j)); } catch (e) {}
+    } catch (e) { return fatal(T[L].eNet); }
+  }
 
   D1 = dateField($('df1'), () => { checkDates(); clr(); });
   D2 = dateField($('df2'), () => { checkDates(); clr(); });
