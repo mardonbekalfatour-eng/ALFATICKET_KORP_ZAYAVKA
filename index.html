@@ -203,7 +203,7 @@ const tg = window.Telegram && Telegram.WebApp;
 const $ = id => document.getElementById(id);
 const qs = (sel, el) => [...(el || document).querySelectorAll(sel)];
 // Ж/д билеты: поменяйте на true, когда появится доступ к продаже
-const TRAIN_ON = false;
+const TRAIN_ON = true;
 let L = 'ru', M = 'pl', moreOpen = false, PL = [], ST = [], CODE = '', DEMO = false;
 const s = { ad: 1, ch: 0 };
 let legs = [];
