@@ -59,7 +59,52 @@ svg{flex-shrink:0}
 .center{padding:80px 28px;text-align:center;color:var(--mut)}
 
 /* ---------- Шапка ---------- */
-#form.in>*{animation:rise .45s ease-out both}
+#form.in>*,#home.in>*{animation:rise .45s ease-out both}
+.top .lh{height:30px;width:auto}
+.kinds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 16px}
+.kind{display:flex;flex-direction:column;align-items:flex-start;gap:16px;min-height:120px;padding:18px 16px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--sky);text-align:left;transition:transform .1s}
+.kind:active{transform:scale(.97)}
+.kind.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.kind b{display:block;font-size:16px;color:var(--tx);font-weight:700}
+.kind.on b{color:#fff}
+.kind small{display:block;font-size:12px;color:var(--mut);margin-top:2px;font-weight:500}
+.kind.on small{color:#D6E2F5}
+.rlist{margin:0 16px;border:1px solid var(--line);border-radius:8px;background:var(--card);overflow:hidden}
+.rrow{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:14px 16px;min-height:56px;border:none;border-bottom:1px solid var(--line);background:transparent;color:var(--tx);text-align:left}
+.rrow:last-child{border-bottom:none}
+.rrow:active{background:var(--card2)}
+.rrow b{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700;letter-spacing:.04em;min-width:0}
+.rrow b svg{color:var(--sky)}
+.rrow span{font-size:13px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lastr{display:flex;gap:12px;align-items:center;margin:16px 16px 0;padding:14px 16px;border-radius:8px;border:1px dashed var(--line)}
+.lastr b{font-size:14px;display:block;font-weight:600}.lastr small{font-size:12px;color:var(--mut)}
+.fh{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 20px 2px}
+.fk{font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--mut);text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ftl{font-size:28px;line-height:34px;font-weight:700;margin-top:2px}
+.fh .ic{height:40px;width:auto}
+.tripc{margin:0 16px 10px}
+#trip .chip.on{background:#F2F5FA;border-color:#F2F5FA;color:#0B2C5E}
+.rtk{padding:0 14px}
+.rtk .pt{position:relative;padding:12px 52px 14px 0}
+.rtk .acw{position:static}
+.rtk .acl{left:-14px;right:-14px}
+.lbl2{display:block;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.pv{display:flex;align-items:baseline;gap:10px;min-width:0}
+.pv .code{font-size:24px;line-height:28px;font-weight:700;letter-spacing:.04em;flex-shrink:0}
+.pv .code:empty{display:none}
+.pv .in{padding:6px 0 0;font-size:17px;font-weight:600}
+.pv .code:not(:empty)+.acw .in{color:var(--sub);font-size:15px;font-weight:500}
+.dates{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:0 16px 10px}
+.dc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 10px 6px 14px;min-width:0}
+.dc .in{font-size:15px;font-weight:600;padding:6px 0;letter-spacing:0;min-width:0}
+.dc .in::placeholder{font-weight:500}
+.dc .cal{width:34px;height:34px}
+.dc .dh{margin:0;min-height:18px}
+.fls{padding:2px 14px}
+.mcw{padding:4px 14px}
+#cls,#tcls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#cls .chip,#tcls .chip{border-radius:8px;height:46px;padding:0 6px;font-size:14px;text-align:center}
+.okl{height:28px;width:auto;display:block;margin:0 auto 26px}
 .top{display:flex;align-items:center;gap:10px;padding:18px 20px 6px}
 .top .ic{height:36px;width:auto}
 .co{font-size:12px;font-weight:600;letter-spacing:.06em;border:1px solid var(--line);border-radius:4px;padding:6px 10px;max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -145,7 +190,7 @@ select{border:1px solid var(--line);background:var(--card2);color:var(--tx);bord
 .swap{position:absolute;right:4px;top:-22px;width:44px;height:44px;border-radius:8px;border:none;background:var(--blue);display:flex;align-items:center;justify-content:center;z-index:2;transition:transform .35s cubic-bezier(.4,0,.2,1)}
 .swap.turn{transform:rotate(180deg)}
 #simple .rw.ft{padding-right:52px}
-.recent{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 16px 4px}
+.recent{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 16px 10px}
 .recent .rl{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-right:2px}
 .recent .chip{padding:7px 12px}
 
@@ -164,7 +209,7 @@ select{border:1px solid var(--line);background:var(--card2);color:var(--tx);bord
 .mb3{width:100%;height:52px;border-radius:8px;border:none;background:#fff;color:#0B2C5E;font-weight:700;font-size:15px;margin-top:10px}
 
 /* ---------- Заявка принята ---------- */
-.ok{padding:40px 20px 10px;text-align:center}
+.ok{padding:22px 20px 10px;text-align:center}
 .oki{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;background:var(--blue);animation:pop .45s cubic-bezier(.2,.9,.3,1.2) both}
 .oki .chk{stroke-dasharray:48;animation:draw .5s .3s ease-out both}
 .okt{font-size:26px;line-height:32px;font-weight:700}
@@ -244,51 +289,57 @@ select{border:1px solid var(--line);background:var(--card2);color:var(--tx);bord
 </div>
 <div id="fatal" class="center hide"></div>
 
-<div id="form" class="hide">
-  <div class="top">
-    <img class="ic" src="logo_icon_white.png" alt="ALFA TICKET">
-    <div class="co" id="company"></div>
-    <div class="langs"><button class="lg" data-l="ru">RU</button><button class="lg" data-l="uz">UZ</button><button class="lg" data-l="en">EN</button></div>
-  </div>
+<div id="home" class="hide">
+  <div class="top"><img class="lh" src="logo_white_h.png" alt="ALFA TICKET"><div class="co" id="company"></div>
+    <div class="langs"><button class="lg" data-l="ru">RU</button><button class="lg" data-l="uz">UZ</button><button class="lg" data-l="en">EN</button></div></div>
   <div class="hello">
     <div class="hi" id="hi"></div>
     <div class="nm" id="nm"></div>
     <div class="sub"><span class="dot" id="dot"></span><span id="hs"></span></div>
   </div>
+  <div class="st" data-i="hWhat"></div>
+  <div class="kinds">
+    <button class="kind on" data-k="pl" type="button"><svg width="26" height="26"><use href="#i-plane"/></svg><span><b data-i="kAir"></b><small data-i="kAirS"></small></span></button>
+    <button class="kind" data-k="tr" type="button"><svg width="26" height="26"><use href="#i-train"/></svg><span><b data-i="kTr"></b><small data-i="kTrS"></small></span></button>
+  </div>
+  <div id="hRecW" class="hide"><div class="st" data-i="hRec"></div><div class="rlist" id="hRec"></div></div>
+  <div class="lastr hide" id="hLast"></div>
+  <div class="bar"><button class="mb" id="hNew"><span class="mbt" data-i="newReq"></span></button></div>
+</div>
+
+<div id="form" class="hide">
+  <div class="fh"><div style="min-width:0"><div class="fk" id="fk"></div><div class="ftl" data-i="newReq"></div></div><img class="ic" src="logo_icon_white.png" alt="ALFA TICKET"></div>
   <div class="nt demo hide" id="demoBox" style="margin-top:14px"><svg width="20" height="20" style="color:var(--gold)"><use href="#i-info"/></svg><div style="flex:1"><b data-i="demoT"></b><div data-i="demoB"></div><input class="in" id="demoC" data-p="demoP" maxlength="120" style="margin-top:10px;background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:10px 12px;width:100%"></div></div>
 
   <div class="seg" id="mode"><button class="on" data-m="pl"><svg width="20" height="20"><use href="#i-plane"/></svg><span data-i="plane"></span></button><button data-m="tr"><svg width="20" height="20"><use href="#i-train"/></svg><span><span data-i="train"></span><small id="trSoon" class="soon" data-i="soon"></small></span></button></div>
   <div class="nt hide" id="trSoonNote"><svg width="20" height="20" style="color:var(--sky)"><use href="#i-info"/></svg><div data-i="soonNote"></div></div>
   <div class="nt" data-only="tr"><svg width="20" height="20" style="color:var(--sky)"><use href="#i-clock"/></svg><div data-i="trainNote"></div></div>
 
+
+  <div class="st" data-i="sRoute"></div>
+  <div class="chips tripc" id="trip"><button class="chip on" data-v="rt" data-i="rt"></button><button class="chip" data-v="ow" data-i="ow"></button><button class="chip" data-v="mc" data-only="pl" data-i="mc"></button></div>
+  <div id="simple">
+    <div class="sec rtk">
+      <div class="pt"><span class="lbl2" id="lFrom"></span><div class="pv"><b class="code" id="fromC"></b><div class="acw"><input class="in ac" id="from" data-p="pFrom" autocomplete="off"></div></div></div>
+      <div class="tear"><button class="swap" id="swap" type="button" aria-label="swap"><svg width="18" height="18"><use href="#i-swap"/></svg></button></div>
+      <div class="pt"><span class="lbl2" id="lTo"></span><div class="pv"><b class="code" id="toC"></b><div class="acw"><input class="in ac" id="to" data-p="pTo" autocomplete="off"></div></div></div>
+    </div>
+    <div class="recent hide" id="recent"></div>
+    <div class="dates">
+      <div class="dc"><span class="lbl2" data-i="dTo"></span><div class="df" id="df1"></div><div class="dh" id="dh1"></div></div>
+      <div class="dc" id="d2w"><span class="lbl2" data-i="dBack"></span><div class="df" id="df2"></div><div class="dh" id="dh2"></div></div>
+    </div>
+    <div class="sec fls"><div class="rw fl"><span class="ri"><svg width="16" height="16"><use href="#i-clock"/></svg></span><input class="in" id="fl1" data-p="pFl" maxlength="40" autocomplete="off"></div><div class="rw fl" id="fl2w"><span class="ri"><svg width="16" height="16"><use href="#i-clock"/></svg></span><input class="in" id="fl2" data-p="pFl2" maxlength="40" autocomplete="off"></div></div>
+  </div>
+  <div class="sec mcw hide" id="multi"><div id="legs"></div><button class="lnk" id="addLeg" data-i="addLeg"></button></div>
+  <div class="sec"><div class="rw"><span style="font-size:13px;color:var(--sub)" data-i="flex"></span><button class="sw" id="flx" aria-label="flex"></button></div></div>
+<div class="er" id="e1"></div>
   <div class="sec urg" id="urgBox">
     <svg width="22" height="22" style="color:var(--err)"><use href="#i-clock"/></svg>
     <div style="flex:1"><div class="ut" data-i="urg"></div><div class="us" data-i="urgSub"></div></div>
     <button class="sw red" id="urg" aria-label="urgent"></button>
   </div>
 
-  <div class="st" data-i="sRoute"></div>
-  <div class="sec">
-    <div class="chips" id="trip"><button class="chip on" data-v="rt" data-i="rt"></button><button class="chip" data-v="ow" data-i="ow"></button><button class="chip" data-v="mc" data-only="pl" data-i="mc"></button></div>
-    <div id="simple">
-      <div class="rw ft"><span class="ri"><svg width="16" height="16"><use href="#i-from"/></svg></span><div class="acw"><input class="in ac" id="from" data-p="pFrom" autocomplete="off"></div></div>
-      <div class="tear"><button class="swap" id="swap" type="button" aria-label="swap"><svg width="18" height="18"><use href="#i-swap"/></svg></button></div>
-      <div class="rw ft"><span class="ri"><svg width="18" height="18"><use href="#i-pin"/></svg></span><div class="acw"><input class="in ac" id="to" data-p="pTo" autocomplete="off"></div></div>
-      <div class="rw"><span class="lb" data-i="dTo"></span><div class="df" id="df1"></div></div>
-      <div class="dh" id="dh1"></div>
-      <div class="rw fl"><span class="ri"><svg width="16" height="16"><use href="#i-clock"/></svg></span><input class="in" id="fl1" data-p="pFl" maxlength="40" autocomplete="off"></div>
-      <div id="d2w"><div class="rw"><span class="lb" data-i="dBack"></span><div class="df" id="df2"></div></div><div class="dh" id="dh2"></div><div class="rw fl"><span class="ri"><svg width="16" height="16"><use href="#i-clock"/></svg></span><input class="in" id="fl2" data-p="pFl" maxlength="40" autocomplete="off"></div></div>
-    </div>
-    <div id="multi" class="hide"><div id="legs"></div><button class="lnk" id="addLeg" data-i="addLeg"></button></div>
-    <div class="rw"><span style="font-size:13px;color:var(--sub)" data-i="flex"></span><button class="sw" id="flx" aria-label="flex"></button></div>
-  </div>
-  <div class="recent hide" id="recent"></div>
-  <div class="er" id="e1"></div>
-
-  <div class="nt" data-only="pl" style="margin-top:10px"><svg width="20" height="20" style="color:var(--sky)"><use href="#i-pass"/></svg><div><b data-i="ppT"></b><br><span data-i="ppB"></span> <span id="pp"></span>
-    <label class="ppc"><input type="checkbox" id="ppOk"><span><span data-i="ppC"></span> <a href="#" id="ppMore" class="ppm" data-i="ppM"></a></span></label>
-    <div class="ppl hide" id="ppL" data-i="ppL"></div></div></div>
-  <div class="er" id="e7" data-only="pl"></div>
 
   <div class="st" data-i="sPax"></div>
   <div class="sec">
@@ -336,10 +387,15 @@ select{border:1px solid var(--line);background:var(--card2);color:var(--tx);bord
     <div class="sec"><div class="chips" id="ex"><button class="chip" data-v="hotel" data-i="hotel"></button><button class="chip" data-v="tr" data-i="tr"></button><button class="chip" data-v="visa" data-only="pl" data-i="visa"></button></div></div>
     <div class="sec"><input class="in" id="cm" data-p="pCm" maxlength="500"></div>
   </div>
+  <div class="nt" data-only="pl" style="margin-top:16px"><svg width="20" height="20" style="color:var(--sky)"><use href="#i-pass"/></svg><div><b data-i="ppT"></b><br><span data-i="ppB"></span> <span id="pp"></span>
+    <label class="ppc"><input type="checkbox" id="ppOk"><span><span data-i="ppC"></span> <a href="#" id="ppMore" class="ppm" data-i="ppM"></a></span></label>
+    <div class="ppl hide" id="ppL" data-i="ppL"></div></div></div>
+  <div class="er" id="e7" data-only="pl"></div>
   <div class="bar"><div class="er" id="e6"></div><button class="mb" id="send"><span class="mbt" data-i="send"></span><span class="mbp"><svg width="24" height="22" viewBox="0 0 24 22" fill="#0B2C5E" aria-hidden="true"><g transform="rotate(-90 12 11)"><use href="#i-jet"/></g></svg></span></button></div>
 </div>
 
 <div id="ok" class="ok hide">
+  <img class="okl" src="logo_white_h.png" alt="ALFA TICKET">
   <div class="oki" id="okI"></div>
   <div class="okt" id="okT"></div>
   <div class="oks" id="okS" style="margin-bottom:0"></div>
@@ -374,9 +430,9 @@ const T = {
 ru:{pFl:'Время или номер рейса/поезда — если знаете',ppL:'ALFA TICKET оформляет билеты по данным, которые предоставляет заказчик, и не проверяет срок действия паспортов. Если паспорт действует меньше требуемого срока или не соответствует требованиям страны въезда, ответственность за отказ в посадке или во въезде, а также за связанные расходы несёт заказчик.',ppC:'Подтверждаю, что паспорта всех пассажиров действительны не менее 6 месяцев после окончания поездки, и принимаю',ppM:'условия ответственности',e7:'Подтвердите срок действия паспортов',soon:'скоро',soonNote:'Ж/д билеты скоро появятся, мы сообщим в группе. Пока можно оформить авиабилет.',demoT:'Это демо-версия формы',demoB:'Заполните её как настоящую заявку. Её получит менеджер ALFA TICKET и свяжется с вами, чтобы рассказать, как подключить такую форму у вас.',demoP:'Ваша компания и телефон',eDemo:'Укажите компанию и телефон, чтобы мы могли с вами связаться',okDemo:'Спасибо! Менеджер ALFA TICKET свяжется с вами и расскажет, как подключить такую форму в рабочей группе вашей компании.',qrHow:'Сканируйте в приложении банка (Click, Payme, Uzum и др.), а не обычной камерой. Если оплачиваете с этого же телефона — сохраните QR и выберите «Сканировать из галереи». Нажмите на код, чтобы увеличить.',qrSave:'Сохранить QR-код',qrClose:'Нажмите, чтобы закрыть',hTitle:'Новая поездка',plane:'Самолёт',train:'Поезд',trainNote:'Билеты на «Афросиаб» раскупают очень быстро. Оставляйте заявку как можно раньше: если мест не будет, предложим другой поезд или авиарейс.',urg:'Срочно — выезд в ближайшие 24 часа',urgSub:'Менеджер сразу свяжется с вами',sRoute:'Маршрут',rt:'Туда-обратно',ow:'В одну сторону',mc:'Сложный маршрут',leg:'Перелёт',addLeg:'+ Добавить перелёт',pFrom:'Откуда',pTo:'Куда',dTo:'Туда',dBack:'Обратно',dPh:'ДД.ММ.ГГГГ',flex:'Даты гибкие ±3 дня',ppT:'Проверьте паспорта',ppB:'Паспорт каждого пассажира должен действовать минимум 6 месяцев после поездки.',ppD:'Для этой поездки — до',ppE:'или дольше.',sPax:'Пассажиры',adults:'Взрослые',kids:'Дети',u12:'до 12',age:'Возраст ребёнка',pick:'выбрать',y0:'до 1 года',y:n=>n+(n===1?' год':n<5?' года':' лет'),sFare:'Тариф · можно оба',bag:'Багаж / возвратный',nobag:'Без багажа / невозвратный',sCls:'Класс · можно несколько',eco:'Эконом',bus:'Бизнес',first:'Первый класс',sAdd:'Допуслуги',seat:'Выбор места',xbag:'Доп. багаж',fast:'Fast Track / бизнес-зал',ins:'Страховка',upg:'Повышение класса',seatQ:'Какое место?',sW:'У окна',sA:'У прохода',sT:'Рядом вместе',sTrain:'Поезд',afr:'Афросиаб',sharq:'Шарк',tAny:'Любой',fallback:'Нет мест — предложить другой поезд или самолёт',sPay:'Способ оплаты',bank:'Перечисление',cash:'Наличные',qr:'QR-код',bankH:'Счёт или договор подготовит наша бухгалтерия',cashH:'Оплата наличными в офисе ALFA',qrH:'После подтверждения суммы оплатите по QR и пришлите скрин или квитанцию',more:'Допуслуги и комментарий',less:'Свернуть',sPref:'Пожелания',direct:'Прямой',via:'С пересадкой',lay:'Пересадка не дольше',l3:'3 часов',l6:'6 часов',lAny:'Не важно',time:'Время отправления',m:'Утро',d:'День',e:'Вечер',sTour:'Услуги ALFA TOUR',hotel:'Отель',tr:'Трансфер',visa:'Виза',pCm:'Комментарий',send:'Отправить заявку',sending:'Отправляем…',e1:'Укажите направление и даты',e1m:'Заполните все перелёты: откуда, куда и дату',eDate:'Проверьте даты',e2:'Выберите возраст каждого ребёнка',e3:'Выберите хотя бы один тариф',e4:'Выберите хотя бы один класс',e5:'Выберите способ оплаты',eNet:'Не удалось отправить. Проверьте интернет и попробуйте ещё раз.',eAuth:'Откройте форму через кнопку «Оставить заявку» в Telegram-группе.',eClient:'Ссылка устарела. Попросите менеджера ALFA обновить кнопку в группе.',bad:'Такой даты нет',past:'Эта дата уже прошла',order:'Раньше даты вылета',wd:['вс','пн','вт','ср','чт','пт','сб'],mo:['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'],hOpen:'Сейчас на связи · ответим за 15 минут',hEve:'На связи 24/7 · ответим в ближайшее время',hNight:'На связи 24/7 · ответим в ближайшее время',okT:n=>'Заявка №'+n+' отправлена',okOpen:'Менеджер пришлёт варианты в вашу группу за 15 минут',okEve:'Заявка уже у нас — ответим в ближайшее время, варианты придут в вашу группу. Если вылет сегодня, включите «Срочно», и мы сразу позвоним.',okNight:'Заявка уже у нас — ответим в ближайшее время. Если вылет сегодня, включите «Срочно», и мы сразу позвоним.',okU:'Дежурный менеджер позвонит в течение 15 минут',okUN:'Срочная заявка принята — мы уже получили сигнал и свяжемся с вами как можно быстрее',okBank:'Оплата перечислением: счёт пришлём в группу вместе с билетом.',okCash:'Оплата наличными: менеджер подскажет, где и когда удобно оплатить.',okQr:'Оплата по QR-коду:',qrMiss:'QR-код пришлёт менеджер в группу.',qrWarn:'Оплачивайте только после того, как менеджер подтвердит сумму. После оплаты отправьте скрин или квитанцию ответом на карточку заявки в группе.',again:'Новая заявка'},
 uz:{pFl:'Reys/poyezd vaqti yoki raqami — bilsangiz',ppL:'ALFA TICKET chiptalarni buyurtmachi taqdim etgan ma’lumotlar asosida rasmiylashtiradi va pasportlarning amal qilish muddatini tekshirmaydi. Agar pasport talab qilingan muddatdan kam amal qilsa yoki kirish davlati talablariga mos kelmasa, reysga yoki mamlakatga kiritilmaslik hamda bunga bog‘liq xarajatlar uchun javobgarlik buyurtmachi zimmasida bo‘ladi.',ppC:'Barcha yo‘lovchilarning pasportlari safar tugaganidan keyin kamida 6 oy amal qilishini tasdiqlayman va',ppM:'javobgarlik shartlarini qabul qilaman',e7:'Pasportlar amal qilish muddatini tasdiqlang',soon:'tez orada',soonNote:'Temir yo‘l chiptalari tez orada paydo bo‘ladi, guruhda xabar beramiz. Hozircha aviachipta rasmiylashtirish mumkin.',demoT:'Bu formaning demo-versiyasi',demoB:'Uni haqiqiy ariza kabi toʻldiring. Arizani ALFA TICKET menejeri oladi va bunday formani sizda qanday ulash haqida aytib beradi.',demoP:'Kompaniyangiz va telefon raqamingiz',eDemo:'Siz bilan bogʻlanishimiz uchun kompaniya va telefonni kiriting',okDemo:'Rahmat! ALFA TICKET menejeri siz bilan bogʻlanadi va bunday formani kompaniyangiz ish guruhida qanday ulashni aytib beradi.',qrHow:'Oddiy kamera emas, bank ilovasida skanerlang (Click, Payme, Uzum va b.). Shu telefondan toʻlasangiz — QRni saqlab, «Galereyadan skanerlash»ni tanlang. Kattalashtirish uchun kodni bosing.',qrSave:'QR-kodni saqlash',qrClose:'Yopish uchun bosing',hTitle:'Yangi safar',plane:'Samolyot',train:'Poyezd',trainNote:'«Afrosiyob» chiptalari juda tez sotilib ketadi. Arizani imkon qadar ertaroq qoldiring: joy boʻlmasa, boshqa poyezd yoki reys taklif qilamiz.',urg:'Shoshilinch — 24 soat ichida joʻnash',urgSub:'Menejer darhol siz bilan bogʻlanadi',sRoute:'Yoʻnalish',rt:'Borish-qaytish',ow:'Bir tomonga',mc:'Murakkab yoʻnalish',leg:'Parvoz',addLeg:'+ Parvoz qoʻshish',pFrom:'Qayerdan',pTo:'Qayerga',dTo:'Borish',dBack:'Qaytish',dPh:'KK.OO.YYYY',flex:'Sanalar moslashuvchan ±3 kun',ppT:'Pasportlarni tekshiring',ppB:'Har bir yoʻlovchining pasporti safardan keyin kamida 6 oy amal qilishi kerak.',ppD:'Bu safar uchun —',ppE:'gacha yoki undan uzoqroq.',sPax:'Yoʻlovchilar',adults:'Kattalar',kids:'Bolalar',u12:'12 yoshgacha',age:'Bola yoshi',pick:'tanlang',y0:'1 yoshgacha',y:n=>n+' yosh',sFare:'Tarif · ikkalasi ham mumkin',bag:'Bagaj / qaytariladigan',nobag:'Bagajsiz / qaytarilmaydigan',sCls:'Klass · bir nechtasi mumkin',eco:'Ekonom',bus:'Biznes',first:'Birinchi klass',sAdd:'Qoʻshimcha xizmatlar',seat:'Joy tanlash',xbag:'Qoʻshimcha bagaj',fast:'Fast Track / biznes-zal',ins:'Sugʻurta',upg:'Klassni oshirish',seatQ:'Qanday joy?',sW:'Deraza yonida',sA:'Yoʻlak yonida',sT:'Yonma-yon',sTrain:'Poyezd',afr:'Afrosiyob',sharq:'Sharq',tAny:'Farqi yoʻq',fallback:'Joy boʻlmasa — boshqa poyezd yoki samolyot taklif qilinsin',sPay:'Toʻlov usuli',bank:'Pul oʻtkazish',cash:'Naqd pul',qr:'QR-kod',bankH:'Hisob yoki shartnomani buxgalteriyamiz tayyorlaydi',cashH:'ALFA ofisida naqd toʻlov',qrH:'Summa tasdiqlangach QR orqali toʻlang va skrinshot yoki kvitansiyani yuboring',more:'Qoʻshimcha xizmatlar va izoh',less:'Yigʻish',sPref:'Istaklar',direct:'Toʻgʻridan-toʻgʻri',via:'Qoʻnib oʻtish bilan',lay:'Kutish vaqti koʻpi bilan',l3:'3 soat',l6:'6 soat',lAny:'Farqi yoʻq',time:'Joʻnash vaqti',m:'Ertalab',d:'Kunduzi',e:'Kechqurun',sTour:'ALFA TOUR xizmatlari',hotel:'Mehmonxona',tr:'Transfer',visa:'Viza',pCm:'Izoh',send:'Arizani yuborish',sending:'Yuborilmoqda…',e1:'Yoʻnalish va sanalarni kiriting',e1m:'Barcha parvozlarni toʻldiring: qayerdan, qayerga va sana',eDate:'Sanalarni tekshiring',e2:'Har bir bolaning yoshini tanlang',e3:'Kamida bitta tarifni tanlang',e4:'Kamida bitta klassni tanlang',e5:'Toʻlov usulini tanlang',eNet:'Yuborib boʻlmadi. Internetni tekshirib, qayta urinib koʻring.',eAuth:'Formani Telegram-guruhdagi «Ariza qoldirish» tugmasi orqali oching.',eClient:'Havola eskirgan. ALFA menejeridan guruhdagi tugmani yangilashni soʻrang.',bad:'Bunday sana yoʻq',past:'Bu sana oʻtib ketgan',order:'Joʻnash sanasidan oldin',wd:['yak','dush','sesh','chor','pay','jum','shan'],mo:['yanvar','fevral','mart','aprel','may','iyun','iyul','avgust','sentabr','oktabr','noyabr','dekabr'],hOpen:'Hozir aloqadamiz · 15 daqiqada javob beramiz',hEve:'24/7 aloqadamiz · tez orada javob beramiz',hNight:'24/7 aloqadamiz · tez orada javob beramiz',okT:n=>'№'+n+' ariza yuborildi',okOpen:'Menejer 15 daqiqada guruhingizga variantlar yuboradi',okEve:'Ariza bizda — tez orada javob beramiz, variantlar guruhingizga keladi. Agar bugun uchsangiz, «Shoshilinch»ni yoqing, darhol qoʻngʻiroq qilamiz.',okNight:'Ariza bizda — tez orada javob beramiz. Agar bugun uchsangiz, «Shoshilinch»ni yoqing, darhol qoʻngʻiroq qilamiz.',okU:'Navbatchi menejer 15 daqiqa ichida qoʻngʻiroq qiladi',okUN:'Shoshilinch ariza qabul qilindi — signal bizga yetdi, imkon qadar tez bogʻlanamiz',okBank:'Pul oʻtkazish: toʻlov uchun hisobni chipta bilan birga guruhga yuboramiz.',okCash:'Naqd pul: menejer qayerda va qachon toʻlash qulayligini aytadi.',okQr:'QR-kod orqali toʻlov:',qrMiss:'QR-kodni menejer guruhga yuboradi.',qrWarn:'Faqat menejer summani tasdiqlagandan keyin toʻlang. Toʻlovdan soʻng skrinshot yoki kvitansiyani guruhdagi ariza kartochkasiga javob qilib yuboring.',again:'Yangi ariza'},
 en:{pFl:'Flight/train time or number — if known',ppL:'ALFA TICKET issues tickets based on the data provided by the customer and does not check passport validity. If a passport is valid for less than the required period or does not meet the entry requirements of the destination country, the customer is responsible for any denied boarding or entry and related costs.',ppC:'I confirm that all passengers’ passports are valid for at least 6 months after the end of the trip and accept the',ppM:'liability terms',e7:'Please confirm passport validity',soon:'soon',soonNote:'Train tickets are coming soon, we’ll announce it in the group. For now you can book a flight.',demoT:'This is a demo of the form',demoB:'Fill it in like a real request. An ALFA TICKET manager will receive it and contact you to explain how to set this form up for your team.',demoP:'Your company and phone',eDemo:'Enter your company and phone so we can contact you',okDemo:'Thank you! An ALFA TICKET manager will contact you and explain how to set up this form in your company’s work group.',qrHow:'Scan it in your banking app (Click, Payme, Uzum, etc.), not the regular camera. Paying from this same phone? Save the QR and choose “Scan from gallery”. Tap the code to enlarge.',qrSave:'Save QR code',qrClose:'Tap to close',hTitle:'New trip',plane:'Flight',train:'Train',trainNote:'Afrosiyob tickets sell out very fast. Send your request as early as possible: if it’s sold out, we’ll offer another train or a flight.',urg:'Urgent — departure within 24 hours',urgSub:'Your manager will contact you right away',sRoute:'Route',rt:'Round trip',ow:'One way',mc:'Multi-city',leg:'Flight',addLeg:'+ Add flight',pFrom:'From',pTo:'To',dTo:'Depart',dBack:'Return',dPh:'DD.MM.YYYY',flex:'Flexible dates ±3 days',ppT:'Check your passports',ppB:'Each passport must be valid for at least 6 months after the trip.',ppD:'For this trip — until',ppE:'or later.',sPax:'Passengers',adults:'Adults',kids:'Children',u12:'under 12',age:'Child age',pick:'select',y0:'under 1',y:n=>n+(n===1?' year':' years'),sFare:'Fare · both allowed',bag:'Baggage / refundable',nobag:'No baggage / non-refundable',sCls:'Class · several allowed',eco:'Economy',bus:'Business',first:'First class',sAdd:'Add-ons',seat:'Seat selection',xbag:'Extra baggage',fast:'Fast Track / lounge',ins:'Insurance',upg:'Upgrade',seatQ:'Which seat?',sW:'Window',sA:'Aisle',sT:'Together',sTrain:'Train',afr:'Afrosiyob',sharq:'Sharq',tAny:'Any',fallback:'If sold out — offer another train or a flight',sPay:'Payment',bank:'Bank transfer',cash:'Cash',qr:'QR code',bankH:'Our accounting team will prepare the invoice or contract',cashH:'Cash payment at the ALFA office',qrH:'After the amount is confirmed, pay by QR and send a screenshot or receipt',more:'Add-ons & comments',less:'Collapse',sPref:'Preferences',direct:'Direct',via:'With a layover',lay:'Layover no longer than',l3:'3 hours',l6:'6 hours',lAny:'Any',time:'Departure time',m:'Morning',d:'Afternoon',e:'Evening',sTour:'ALFA TOUR services',hotel:'Hotel',tr:'Transfer',visa:'Visa',pCm:'Comments',send:'Send request',sending:'Sending…',e1:'Enter the route and dates',e1m:'Fill in every flight: from, to and date',eDate:'Check the dates',e2:'Select each child’s age',e3:'Select at least one fare',e4:'Select at least one class',e5:'Choose a payment method',eNet:'Couldn’t send. Check your connection and try again.',eAuth:'Open the form with the “Send request” button in your Telegram group.',eClient:'This link is outdated. Ask your ALFA manager to refresh the button in the group.',bad:'Invalid date',past:'This date has passed',order:'Before departure date',wd:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],mo:['January','February','March','April','May','June','July','August','September','October','November','December'],hOpen:'Online now · reply within 15 min',hEve:'Available 24/7 · we’ll reply soon',hNight:'Available 24/7 · we’ll reply soon',okT:n=>'Request #'+n+' sent',okOpen:'Your manager will send options to your group within 15 minutes',okEve:'We’ve got your request and will reply soon — options will arrive in your group. If you’re flying today, turn on Urgent and we’ll call right away.',okNight:'We’ve got your request and will reply soon. If you’re flying today, turn on Urgent and we’ll call right away.',okU:'The on-duty manager will call you within 15 minutes',okUN:'Urgent request received — we’ve been alerted and will contact you as soon as possible',okBank:'Bank transfer: we’ll send the invoice to your group together with the ticket.',okCash:'Cash: your manager will tell you where and when to pay.',okQr:'Payment by QR code:',qrMiss:'Your manager will send the QR code to the group.',qrWarn:'Pay only after your manager confirms the amount. Then send a screenshot or receipt as a reply to the request card in your group.',again:'New request'}};
-Object.assign(T.ru, { hi: ['Доброй ночи,', 'Доброе утро,', 'Добрый день,', 'Добрый вечер,'], recent: 'Недавние', okSent: 'Заявка отправлена', toGroup: 'Вернуться в группу', ld: 'Готовим вашу форму', tkReq: 'Заявка', tkDates: 'Даты', tkPax: 'Пассажиры', tkCls: 'Класс', tkMc: 'Сложный маршрут', bank: 'Перечисление', cash: 'Наличные', qr: 'QR-код' });
-Object.assign(T.uz, { hi: ['Xayrli tun,', 'Xayrli tong,', 'Xayrli kun,', 'Xayrli kech,'], recent: 'Yaqinda', okSent: 'Ariza yuborildi', toGroup: 'Guruhga qaytish', ld: 'Formangiz tayyorlanmoqda', tkReq: 'Ariza', tkDates: 'Sanalar', tkPax: 'Yo‘lovchilar', tkCls: 'Klass', tkMc: 'Murakkab yo‘nalish' });
-Object.assign(T.en, { hi: ['Good night,', 'Good morning,', 'Good afternoon,', 'Good evening,'], recent: 'Recent', okSent: 'Request sent', toGroup: 'Back to the group', ld: 'Preparing your form', tkReq: 'Request', tkDates: 'Dates', tkPax: 'Passengers', tkCls: 'Class', tkMc: 'Multi-city' });
+Object.assign(T.ru, { newReq: 'Новая заявка', okAcc: 'Заявка принята', pFl: 'Туда: время или номер рейса', hWhat: 'Что оформляем', kAir: 'Авиабилеты', kAirS: 'любые направления', kTr: 'Ж/д билеты', kTrS: 'по Узбекистану', hRec: 'Ваши частые маршруты', hWelcome: 'Добро пожаловать', lastSent: 'отправлена', lFromPl: 'Вылет', lToPl: 'Прилёт', lFromTr: 'Отправление', lToTr: 'Прибытие', pFl2: 'Обратно: время или номер рейса', times: n => n + (n % 10 === 1 && n % 100 !== 11 ? ' раз' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? ' раза' : ' раз'), hi: ['Доброй ночи,', 'Доброе утро,', 'Добрый день,', 'Добрый вечер,'], recent: 'Недавние', okSent: 'Заявка отправлена', toGroup: 'Вернуться в группу', ld: 'Готовим вашу форму', tkReq: 'Заявка', tkDates: 'Даты', tkPax: 'Пассажиры', tkCls: 'Класс', tkMc: 'Сложный маршрут', bank: 'Перечисление', cash: 'Наличные', qr: 'QR-код' });
+Object.assign(T.uz, { newReq: 'Yangi ariza', okAcc: 'Ariza qabul qilindi', pFl: 'Borish: reys vaqti yoki raqami', hWhat: 'Nima rasmiylashtiramiz', kAir: 'Aviachiptalar', kAirS: 'istalgan yo‘nalish', kTr: 'Temir yo‘l', kTrS: 'O‘zbekiston bo‘ylab', hRec: 'Tez-tez yo‘nalishlaringiz', hWelcome: 'Xush kelibsiz', lastSent: 'yuborilgan', lFromPl: 'Uchish', lToPl: 'Qo‘nish', lFromTr: 'Jo‘nash', lToTr: 'Yetib kelish', pFl2: 'Qaytish: reys vaqti yoki raqami', times: n => n + ' marta', hi: ['Xayrli tun,', 'Xayrli tong,', 'Xayrli kun,', 'Xayrli kech,'], recent: 'Yaqinda', okSent: 'Ariza yuborildi', toGroup: 'Guruhga qaytish', ld: 'Formangiz tayyorlanmoqda', tkReq: 'Ariza', tkDates: 'Sanalar', tkPax: 'Yo‘lovchilar', tkCls: 'Klass', tkMc: 'Murakkab yo‘nalish' });
+Object.assign(T.en, { newReq: 'New request', okAcc: 'Request received', pFl: 'Outbound: flight time or number', hWhat: 'What do you need', kAir: 'Flights', kAirS: 'any destination', kTr: 'Train tickets', kTrS: 'within Uzbekistan', hRec: 'Your frequent routes', hWelcome: 'Welcome', lastSent: 'sent', lFromPl: 'Departure', lToPl: 'Arrival', lFromTr: 'Departure', lToTr: 'Arrival', pFl2: 'Return: flight time or number', times: n => n + (n === 1 ? ' time' : ' times'), hi: ['Good night,', 'Good morning,', 'Good afternoon,', 'Good evening,'], recent: 'Recent', okSent: 'Request sent', toGroup: 'Back to the group', ld: 'Preparing your form', tkReq: 'Request', tkDates: 'Dates', tkPax: 'Passengers', tkCls: 'Class', tkMc: 'Multi-city' });
 const RU = T.ru;
 
 const tg = window.Telegram && Telegram.WebApp;
@@ -451,6 +507,18 @@ function dateHint(el, v, min) {
 }
 
 // ---------- Подсказки городов ----------
+const LI = { ru: 0, uz: 1, en: 2 };
+const codeOf = v => { const m = /\(([A-Z0-9]{3})\)\s*$/.exec(v || ''); return m ? m[1] : ''; };
+function codeEl(inp) { const pv = inp.closest('.pv'); return pv ? pv.querySelector('.code') : null; }
+// short = поле маршрута в билете: показываем город, а код аэропорта крупно рядом
+function setPlace(inp, p) {
+  const c = codeEl(inp);
+  if (!p) { inp.value = ''; inp.dataset.ru = ''; inp.dataset.code = ''; if (c) c.textContent = ''; return; }
+  const disp = p[LI[L]] || p[0];
+  const code = codeOf(p[0]);
+  inp.value = c ? cityOf(disp) : disp; inp.dataset.ru = p[0]; inp.dataset.code = code; if (c) c.textContent = code;
+}
+const findPlace = ru => (M === 'tr' ? ST : PL).find(p => p[0] === ru);
 function attachAC(inp) {
   const list = document.createElement('div'); list.className = 'acl'; inp.parentNode.appendChild(list);
   const li = { ru: 0, uz: 1, en: 2 };
@@ -460,14 +528,15 @@ function attachAC(inp) {
     const res = src.filter(p => p[3].includes(q) || p[li[L]].toLowerCase().includes(q)).slice(0, 8);
     if (!res.length) { list.style.display = 'none'; return; }
     list.innerHTML = ''; res.forEach(p => { const d = document.createElement('div'); d.className = 'aci'; d.textContent = p[li[L]];
-      d.addEventListener('mousedown', e => { e.preventDefault(); inp.value = p[li[L]]; inp.dataset.ru = p[0]; list.style.display = 'none'; hap('tap'); inp.dispatchEvent(new Event('change')); }); list.appendChild(d); });
+      d.addEventListener('mousedown', e => { e.preventDefault(); setPlace(inp, p); list.style.display = 'none'; hap('tap'); inp.blur(); inp.dispatchEvent(new Event('change')); }); list.appendChild(d); });
     list.style.display = 'block';
   };
-  inp.addEventListener('input', () => { inp.dataset.ru = ''; show(); clr(); });
+  inp.addEventListener('input', () => { inp.dataset.ru = ''; inp.dataset.code = ''; const c = codeEl(inp); if (c) c.textContent = ''; show(); clr(); });
   inp.addEventListener('focus', show);
   inp.addEventListener('blur', () => setTimeout(() => list.style.display = 'none', 150));
 }
 const ruVal = inp => (inp.dataset.ru || inp.value).trim();
+const cityOf = v => String(v || '').split(/ — |,| \(/)[0].trim();
 
 // ---------- Чипы и переключатели ----------
 const on = id => qs('.chip.on', $(id)).map(b => b.dataset.v);
@@ -488,19 +557,70 @@ function saveRecent() {
   if (trip() === 'mc') return;
   const f = $('from'), to = $('to'); if (!ruVal(to)) return;
   const item = { m: M, f: f.value, fr: f.dataset.ru || '', t: to.value, tr: to.dataset.ru || '' };
-  const list = [item].concat(getRecent().filter(x => !(x.m === item.m && (x.tr || x.t) === (item.tr || item.t)))).slice(0, 4);
+  const old = getRecent(), prev = old.find(x => x.m === item.m && (x.fr || x.f) === (item.fr || item.f) && (x.tr || x.t) === (item.tr || item.t));
+  item.n = (prev && prev.n || 0) + 1;
+  const list = [item].concat(old.filter(x => x !== prev)).slice(0, 6);
   try { localStorage.setItem(RKEY(), JSON.stringify(list)); } catch (e) {}
 }
-const cityOf = v => String(v || '').split(/ — |,| \(/)[0].trim();
 function renderRecent() {
   const box = $('recent'), list = getRecent().filter(x => x.m === M);
   box.innerHTML = '';
   if (!list.length || trip() === 'mc') { box.classList.add('hide'); return; }
   const l = document.createElement('span'); l.className = 'rl'; l.textContent = T[L].recent; box.appendChild(l);
-  list.forEach(x => { const b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.textContent = cityOf(x.t || x.tr);
-    b.onclick = () => { $('from').value = x.f; $('from').dataset.ru = x.fr; $('to').value = x.t; $('to').dataset.ru = x.tr; hap('tap'); clr(); };
+  list.slice(0, 4).forEach(x => { const b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.textContent = cityOf(x.t || x.tr);
+    b.onclick = () => { usePreset(x); hap('tap'); clr(); };
     box.appendChild(b); });
   box.classList.remove('hide');
+}
+
+function usePreset(x) {
+  const pf = findPlace(x.fr), pt = findPlace(x.tr);
+  if (pf) setPlace($('from'), pf); else { $('from').value = x.f; $('from').dataset.ru = x.fr; }
+  if (pt) setPlace($('to'), pt); else { $('to').value = x.t; $('to').dataset.ru = x.tr; }
+}
+
+// ---------- Экраны ----------
+const SCREENS = ['loading', 'fatal', 'home', 'form', 'ok'];
+function show(id) {
+  SCREENS.forEach(x => $(x).classList.toggle('hide', x !== id));
+  window.scrollTo(0, 0);
+  const el = $(id);
+  if (id === 'home' || id === 'form') {
+    qs('#' + id + ' > *').forEach((e, i) => e.style.animationDelay = Math.min(i * 35, 420) + 'ms');
+    el.classList.remove('in'); void el.offsetWidth; el.classList.add('in'); setTimeout(() => el.classList.remove('in'), 1200);
+  }
+  try { if (tg && tg.BackButton) { if (id === 'form') tg.BackButton.show(); else tg.BackButton.hide(); } } catch (e) {}
+}
+function showHome() { renderHome(); show('home'); }
+function openForm(m, preset) {
+  if (m && m !== M) setMode(m);
+  if (preset) usePreset(preset);
+  $('send').classList.remove('go');
+  show('form');
+}
+function setMode(m) {
+  M = m;
+  qs('button', $('mode')).forEach(x => x.classList.toggle('on', x.dataset.m === M));
+  const st = M === 'tr' ? ST.find(p => p[0] === 'Ташкент') : PL.find(p => p[3].includes('tas') && p[3].includes('ташкент'));
+  setPlace($('from'), st || null); setPlace($('to'), null);
+  applyMode();
+}
+const LKEY = () => 'alfa_lastreq_' + CODE;
+function renderHome() {
+  const t = T[L];
+  const list = getRecent().slice().sort((a, b) => (b.n || 1) - (a.n || 1)).slice(0, 3);
+  $('hRecW').classList.toggle('hide', !list.length);
+  $('hRec').innerHTML = '';
+  list.forEach(x => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'rrow';
+    const a = codeOf(x.fr) || cityOf(x.f), z = codeOf(x.tr) || cityOf(x.t);
+    b.innerHTML = '<b>' + esc(a) + '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>' + esc(z) + '</b><span>' + esc((codeOf(x.tr) ? cityOf(x.t) + ' · ' : '') + t.times(x.n || 1)) + '</span>';
+    b.onclick = () => { hap('tap'); openForm(x.m, x); };
+    $('hRec').appendChild(b);
+  });
+  let lr = null; try { lr = JSON.parse(localStorage.getItem(LKEY()) || 'null'); } catch (e) {}
+  $('hLast').classList.toggle('hide', !lr);
+  if (lr) $('hLast').innerHTML = '<svg width="20" height="20" style="color:var(--sky)"><use href="#i-clock"/></svg><div><b>' + esc(t.tkReq + ' №' + lr.id + ' · ' + lr.s) + '</b><small>' + esc(t.lastSent + ' ' + lr.at) + '</small></div>';
 }
 
 // ---------- Отрисовка ----------
@@ -513,7 +633,10 @@ function tr() {
   qs('.df .in').forEach(e => e.placeholder = t.dPh);
   qs('.lg').forEach(b => b.classList.toggle('on', b.dataset.l === L));
   $('moreT').textContent = moreOpen ? t.less : t.more;
-  hdr(); payHint(); ages(); renderLegs(); checkDates(); renderRecent();
+  hdr(); payHint(); ages(); renderLegs(); checkDates(); renderRecent(); setLabels();
+  if (!$('home').classList.contains('hide')) renderHome();
+  const pf = findPlace($('from').dataset.ru), pt = findPlace($('to').dataset.ru);
+  if (pf) setPlace($('from'), pf); if (pt) setPlace($('to'), pt);
   document.documentElement.lang = L;
 }
 function hdr() {
@@ -523,16 +646,19 @@ function hdr() {
   const u = tg && tg.initDataUnsafe && tg.initDataUnsafe.user, name = u && u.first_name ? u.first_name : '';
   $('hi').textContent = name ? t.hi[h < 5 ? 0 : h < 12 ? 1 : h < 18 ? 2 : 3] : '';
   $('hi').classList.toggle('hide', !name);
-  $('nm').textContent = name || t.hTitle;
+  $('nm').textContent = name || t.hWelcome;
+  $('fk').textContent = ($('company').textContent || '') + (name ? ' · ' + name : '');
 }
 function payHint() { const v = on('pay')[0], h = $('payH'); h.classList.toggle('hide', !v); if (v) h.textContent = T[L][v + 'H']; }
+function setLabels() { const t = T[L]; $('lFrom').textContent = M === 'tr' ? t.lFromTr : t.lFromPl; $('lTo').textContent = M === 'tr' ? t.lToTr : t.lToPl; }
 function applyMode() {
   qs('[data-only]').forEach(e => e.classList.toggle('hide', e.dataset.only !== M));
+  setLabels();
   if (M === 'tr' && trip() === 'mc') setTrip('rt');
   syncTrip(); clr(); renderRecent();
 }
 function setTrip(v) { qs('.chip', $('trip')).forEach(x => x.classList.toggle('on', x.dataset.v === v)); }
-function syncTrip() { const v = trip(); $('simple').classList.toggle('hide', v === 'mc'); $('multi').classList.toggle('hide', v !== 'mc'); $('d2w').classList.toggle('hide', v !== 'rt'); checkDates(); renderRecent(); }
+function syncTrip() { const v = trip(); $('simple').classList.toggle('hide', v === 'mc'); $('multi').classList.toggle('hide', v !== 'mc'); $('d2w').classList.toggle('hide', v !== 'rt'); $('fl2w').classList.toggle('hide', v !== 'rt'); checkDates(); renderRecent(); }
 function ages() {
   const t = T[L], a = $('ages'), cur = qs('select', a).map(x => x.value); a.innerHTML = '';
   for (let i = 0; i < s.ch; i++) { let o = '<option value="">' + t.pick + '</option>'; for (let y = 0; y < 12; y++) o += '<option value="' + y + '">' + (y === 0 ? t.y0 : t.y(y)) + '</option>';
@@ -633,9 +759,9 @@ function ticketView() {
   const t = T[L], mc = trip() === 'mc';
   const code = v => { const m = /\(([A-Z0-9]{3})\)\s*$/.exec(v || ''); return m ? m[1] : ''; };
   let a, b, ca, cb;
-  if (mc) { const f = legs[0], z = legs[legs.length - 1]; a = f.f; b = z.t; }
-  else { a = $('from').value; b = $('to').value; }
-  ca = code(a); cb = code(b);
+  if (mc) { const f = legs[0], z = legs[legs.length - 1]; a = f.f; b = z.t; ca = code(f.fr) || code(a); cb = code(z.tr) || code(b); }
+  else { a = $('from').value; b = $('to').value; ca = code(a); cb = code(b); }
+  if (!mc) { ca = $('from').dataset.code || ca; cb = $('to').dataset.code || cb; }
   const dates = mc ? legs.map(x => x.d).filter(Boolean).join(', ') : D1.tx.value.slice(0, 5) + (trip() === 'rt' && D2.tx.value ? ' – ' + D2.tx.value.slice(0, 5) : '');
   const cls = on(M === 'tr' ? 'tcls' : 'cls').map(v => t[v] || v.toUpperCase()).join(', ');
   const kind = (M === 'tr' ? 'tr' : 'pl') + '-' + (mc ? 'mc' : trip() === 'rt' ? 'rt' : 'ow');
@@ -766,9 +892,11 @@ async function send() {
   try { j = await req; } catch (e) { j = null; }
   if (j && j.ok) {
     last.id = j.id; sending = false;
+    try { const n = new Date(), pad = x => String(x).padStart(2, '0');
+      localStorage.setItem(LKEY(), JSON.stringify({ id: j.id, s: last.tv.A + ' → ' + last.tv.B, at: pad(n.getDate()) + '.' + pad(n.getMonth() + 1) + ' ' + pad(n.getHours()) + ':' + pad(n.getMinutes()) })); } catch (e) {}
     if (!$('ok').classList.contains('hide')) {
       const w = $('tk').querySelector('.wait'); if (w) { w.classList.remove('wait'); w.textContent = t.tkReq + ' №' + j.id; }
-      $('okT').textContent = t.okT(j.id); $('again').disabled = false;
+      $('again').disabled = false;
     }
     hap('success');
     return;
@@ -780,7 +908,7 @@ async function send() {
   hap('error');
 }
 function showOk() {
-  $('form').classList.add('hide'); $('ok').classList.remove('hide'); window.scrollTo(0, 0);
+  show('ok');
   okFill(); renderTicket();
   // перезапуск анимаций
   qs('#ok .oki, #ok .tkc, #ok .okafter').forEach(e => { e.style.animation = 'none'; void e.offsetWidth; e.style.animation = ''; });
@@ -791,7 +919,7 @@ function okFill() {
   if (last.urgent) { S = p === 'night' ? t.okUN : t.okU; bg = 'var(--red)'; icon = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>'; }
   else { S = p === 'open' ? t.okOpen : p === 'eve' ? t.okEve : t.okNight; icon = '<svg width="38" height="38" viewBox="0 0 24 24" fill="none"><path class="chk" d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'; }
   if (DEMO) S = t.okDemo;
-  $('okT').textContent = last.id ? t.okT(last.id) : t.okSent; $('okS').textContent = S;
+  $('okT').textContent = t.okAcc; $('okS').textContent = S;
   $('okP').textContent = last.pay === 'bank' ? t.okBank : last.pay === 'cash' ? t.okCash : t.okQr;
   $('qrBox').classList.toggle('hide', last.pay !== 'qr');
   const e = $('okI'); e.style.background = bg; e.innerHTML = icon;
@@ -799,12 +927,8 @@ function okFill() {
 }
 
 // ---------- Запуск ----------
-function fatal(msg) { $('loading').classList.add('hide'); $('fatal').textContent = msg; $('fatal').classList.remove('hide'); }
-function showForm() {
-  $('loading').classList.add('hide'); const f = $('form'); f.classList.remove('hide');
-  qs('#form > *').forEach((e, i) => e.style.animationDelay = Math.min(i * 35, 420) + 'ms');
-  f.classList.add('in'); setTimeout(() => f.classList.remove('in'), 1200);
-}
+function fatal(msg) { $('fatal').textContent = msg; show('fatal'); }
+
 async function init() {
   theme();
   try { const saved = localStorage.getItem('alfa_lang'); if (saved && T[saved]) L = saved; else if (tg && tg.initDataUnsafe.user && tg.initDataUnsafe.user.language_code === 'uz') L = 'uz'; } catch (e) {}
@@ -836,7 +960,7 @@ async function init() {
   D1 = dateField($('df1'), () => { checkDates(); clr(); });
   D2 = dateField($('df2'), () => { checkDates(); clr(); });
   const fromDef = PL.find(p => p[3].includes('tas') && p[3].includes('ташкент'));
-  if (fromDef) { $('from').value = fromDef[{ ru: 0, uz: 1, en: 2 }[L]]; $('from').dataset.ru = fromDef[0]; }
+  if (fromDef) setPlace($('from'), fromDef);
   attachAC($('from')); attachAC($('to'));
   legs = [{ f: $('from').value, fr: $('from').dataset.ru, t: '', tr: '', d: '' }, { f: '', fr: '', t: '', tr: '', d: '' }];
 
@@ -844,10 +968,14 @@ async function init() {
   $('ppMore').onclick = e => { e.preventDefault(); e.stopPropagation(); $('ppL').classList.toggle('hide'); };
   $('mode').onclick = e => { const b = e.target.closest('button'); if (!b) return;
     if (!TRAIN_ON && b.dataset.m === 'tr') { $('trSoonNote').classList.toggle('hide'); return; } if (b.dataset.m === M) return;
-    qs('button', $('mode')).forEach(x => x.classList.remove('on')); b.classList.add('on'); M = b.dataset.m; hap('tap');
-    const st = M === 'tr' ? ST.find(p => p[0] === 'Ташкент') : PL.find(p => p[3].includes('tas') && p[3].includes('ташкент'));
-    $('from').value = st ? st[{ ru: 0, uz: 1, en: 2 }[L]] : ''; $('from').dataset.ru = st ? st[0] : ''; $('to').value = ''; $('to').dataset.ru = ''; applyMode(); };
-  $('swap').onclick = () => { const f = $('from'), to = $('to'); [f.value, to.value] = [to.value, f.value]; [f.dataset.ru, to.dataset.ru] = [to.dataset.ru || '', f.dataset.ru || '']; $('swap').classList.toggle('turn'); hap('tap'); clr(); };
+    hap('tap'); setMode(b.dataset.m); };
+  qs('.kind').forEach(b => b.onclick = () => { hap('tap'); if (!TRAIN_ON && b.dataset.k === 'tr') return; openForm(b.dataset.k); });
+  $('hNew').onclick = () => { hap('press'); openForm(); };
+  try { if (tg && tg.BackButton) tg.BackButton.onClick(() => { if (!$('form').classList.contains('hide')) { hap('tap'); showHome(); } }); } catch (e) {}
+  $('swap').onclick = () => { const f = $('from'), to = $('to'), cf = codeEl(f), ct = codeEl(to);
+    [f.value, to.value] = [to.value, f.value]; [f.dataset.ru, to.dataset.ru] = [to.dataset.ru || '', f.dataset.ru || ''];
+    [f.dataset.code, to.dataset.code] = [to.dataset.code || '', f.dataset.code || '']; cf.textContent = f.dataset.code; ct.textContent = to.dataset.code;
+    $('swap').classList.toggle('turn'); hap('tap'); clr(); };
   chips('trip', 0, syncTrip); chips('lay'); chips('tt'); chips('seatP'); chips('pay', 0, payHint);
   chips('dir', 1, () => $('layW').classList.toggle('hide', !on('dir').includes('via')));
   chips('add', 1, () => $('seatW').classList.toggle('hide', !on('add').includes('seat')));
@@ -857,10 +985,10 @@ async function init() {
   qs('[data-c]').forEach(b => b.onclick = () => { const k = b.dataset.c, v = s[k] + +b.dataset.d; if (v < (k === 'ad' ? 1 : 0) || v > 9) return; s[k] = v; const n = $(k); n.textContent = v; n.classList.remove('bump'); void n.offsetWidth; n.classList.add('bump'); hap('tap'); if (k === 'ch') ages(); clr(); });
   $('addLeg').onclick = () => { const p = legs[legs.length - 1]; legs.push({ f: p.t || '', fr: p.tr || '', t: '', tr: '', d: '' }); renderLegs(); };
   $('send').onclick = send;
-  $('again').onclick = () => { $('ok').classList.add('hide'); $('send').classList.remove('go'); renderRecent(); showForm(); window.scrollTo(0, 0); };
+  $('again').onclick = () => { $('send').classList.remove('go'); renderRecent(); showHome(); };
   if (tg && tg.close) { $('toGroup').classList.remove('hide'); $('toGroup').onclick = () => tg.close(); }
 
-  showForm(); applyMode(); tr();
+  applyMode(); tr(); showHome();
   setInterval(hdr, 60000);
 }
 init();
