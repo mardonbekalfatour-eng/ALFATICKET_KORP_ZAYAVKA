@@ -105,6 +105,30 @@ svg{flex-shrink:0}
 #cls,#tcls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 #cls .chip,#tcls .chip{border-radius:8px;height:46px;padding:0 6px;font-size:14px;text-align:center}
 .okl{height:28px;width:auto;display:block;margin:0 auto 26px}
+.rvs{margin:2px 20px 14px;font-size:13px;color:var(--mut)}
+.tk.rvtk{margin:0 16px 12px;padding-top:0}
+.tkc.still{animation:none;border-radius:8px}
+.rvl{padding:2px 14px}
+.rvr{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.rvr:last-child{border-bottom:none}
+.rvr span{flex:0 0 36%;color:var(--mut);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding-top:2px}
+.rvr b{flex:1;font-weight:600;color:var(--tx);word-break:break-word}
+.rvr.urgent b{color:var(--err)}
+.bar.two{gap:10px}
+.bar.two .ed{flex:0 0 34%;margin:0;max-width:170px}
+.bar.two .mb{flex:1;width:auto}
+.bar.going .ed{display:none}
+.bar.going .mb{flex:0 0 auto;width:100%}
+.okn{display:inline-block;margin:10px 0 2px;padding:6px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--sub)}
+.okn.wait{animation:pulse 1.2s ease-in-out infinite}
+.okafter{margin-top:20px}
+.okw,.okty{display:flex;gap:12px;align-items:flex-start;text-align:left;border-radius:8px;padding:14px 16px;margin:0 0 10px}
+.okw{background:var(--card);border:1px solid var(--line)}
+.okty{background:linear-gradient(0deg,rgba(245,178,26,.08),rgba(245,178,26,.08)),var(--bg);border:1px solid rgba(245,178,26,.35)}
+.okw b,.okty b{display:block;font-size:15px;font-weight:700;margin-bottom:3px}
+.okw p,.okty p{margin:0;font-size:14px;line-height:1.5;color:var(--sub)}
+.okw .okd{margin-top:6px;color:var(--tx);font-weight:600}
+.okw .okd:empty{display:none}
 .top{display:flex;align-items:center;gap:10px;padding:18px 20px 6px}
 .top .ic{height:36px;width:auto}
 .co{font-size:12px;font-weight:600;letter-spacing:.06em;border:1px solid var(--line);border-radius:4px;padding:6px 10px;max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -205,6 +229,8 @@ select{border:1px solid var(--line);background:var(--card2);color:var(--tx);bord
 .mb.go .mbt{animation:fadeOut .15s forwards}
 .mb.go .mbp{animation:fadeIn .15s .2s forwards}
 .mb.go .mbp svg{animation:takeoff .7s .45s cubic-bezier(.55,0,.85,.35) forwards}
+@keyframes spin{to{transform:rotate(360deg)}}
+.mb.go::before{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid rgba(255,255,255,.18);border-top-color:#fff;opacity:0;animation:fadeIn .2s 1.15s forwards,spin .9s linear 1.15s infinite}
 .mb2{width:100%;height:52px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--tx);font-weight:600;font-size:15px;margin-top:10px}
 .mb3{width:100%;height:52px;border-radius:8px;border:none;background:#fff;color:#0B2C5E;font-weight:700;font-size:15px;margin-top:10px}
 
@@ -246,7 +272,7 @@ select{border:1px solid var(--line);background:var(--card2);color:var(--tx);bord
 .tkg div{display:flex;flex-direction:column;gap:2px;min-width:0}
 .tkg small{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5A6678}
 .tkg span{font-size:14px;font-weight:700;overflow-wrap:anywhere}
-.okafter{animation:rise .4s 1.75s ease-out both}
+.okafter{animation:rise .45s .85s ease-out both}
 .qr{width:min(78vw,300px);height:auto;aspect-ratio:1;object-fit:contain;image-rendering:pixelated;border-radius:8px;background:#fff;padding:8px;display:block;margin:6px auto;cursor:zoom-in}
 .qrfull{position:fixed;inset:0;z-index:99;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:16px}
 .qrfull img{width:min(92vw,92vh);height:auto;image-rendering:pixelated}
@@ -391,16 +417,25 @@ select{border:1px solid var(--line);background:var(--card2);color:var(--tx);bord
     <label class="ppc"><input type="checkbox" id="ppOk"><span><span data-i="ppC"></span> <a href="#" id="ppMore" class="ppm" data-i="ppM"></a></span></label>
     <div class="ppl hide" id="ppL" data-i="ppL"></div></div></div>
   <div class="er" id="e7" data-only="pl"></div>
-  <div class="bar"><div class="er" id="e6"></div><button class="mb" id="send"><span class="mbt" data-i="send"></span><span class="mbp"><svg width="24" height="22" viewBox="0 0 24 22" fill="#0B2C5E" aria-hidden="true"><g transform="rotate(-90 12 11)"><use href="#i-jet"/></g></svg></span></button></div>
+  <div class="bar"><div class="er" id="e9"></div><button class="mb" id="next"><span class="mbt" data-i="toReview"></span></button></div>
+</div>
+
+<div id="rev" class="hide">
+  <div class="fh"><div style="min-width:0"><div class="fk" id="fk2"></div><div class="ftl" data-i="revT"></div></div><img class="ic" src="logo_icon_white.png" alt="ALFA TICKET"></div>
+  <p class="rvs" data-i="revS"></p>
+  <div class="tk rvtk"><div class="tkc still" id="rtk"></div></div>
+  <div class="sec rvl" id="rvList"></div>
+  <div class="bar two" id="rvBar"><div class="er" id="e6"></div><button class="mb2 ed" id="rvEdit" type="button" data-i="edit"></button><button class="mb" id="send"><span class="mbt" data-i="send"></span><span class="mbp"><svg width="24" height="22" viewBox="0 0 24 22" fill="#0B2C5E" aria-hidden="true"><g transform="rotate(-90 12 11)"><use href="#i-jet"/></g></svg></span></button></div>
 </div>
 
 <div id="ok" class="ok hide">
   <img class="okl" src="logo_white_h.png" alt="ALFA TICKET">
   <div class="oki" id="okI"></div>
   <div class="okt" id="okT"></div>
-  <div class="oks" id="okS" style="margin-bottom:0"></div>
-  <div class="tk"><div class="slot"></div><div class="clip"><div class="tkc" id="tk"></div></div></div>
+  <div class="okn" id="okN"></div>
   <div class="okafter">
+    <div class="okw"><svg width="22" height="22" style="color:var(--sky)"><use href="#i-clock"/></svg><div><b data-i="okWhen"></b><p id="okS"></p><p class="okd" id="okD"></p></div></div>
+    <div class="okty"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5B21A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><div><b data-i="thxT"></b><p data-i="thx"></p></div></div>
     <div class="nt" style="margin:0 0 6px;text-align:left"><svg width="20" height="20" style="color:var(--sky)"><use href="#i-info"/></svg><div id="okP"></div></div>
     <div id="qrBox" class="hide">
       <img class="qr" id="qrImg" src="qr.png" alt="QR" onerror="this.classList.add('hide');document.getElementById('qrMiss').classList.remove('hide')">
@@ -430,9 +465,9 @@ const T = {
 ru:{pFl:'Время или номер рейса/поезда — если знаете',ppL:'ALFA TICKET оформляет билеты по данным, которые предоставляет заказчик, и не проверяет срок действия паспортов. Если паспорт действует меньше требуемого срока или не соответствует требованиям страны въезда, ответственность за отказ в посадке или во въезде, а также за связанные расходы несёт заказчик.',ppC:'Подтверждаю, что паспорта всех пассажиров действительны не менее 6 месяцев после окончания поездки, и принимаю',ppM:'условия ответственности',e7:'Подтвердите срок действия паспортов',soon:'скоро',soonNote:'Ж/д билеты скоро появятся, мы сообщим в группе. Пока можно оформить авиабилет.',demoT:'Это демо-версия формы',demoB:'Заполните её как настоящую заявку. Её получит менеджер ALFA TICKET и свяжется с вами, чтобы рассказать, как подключить такую форму у вас.',demoP:'Ваша компания и телефон',eDemo:'Укажите компанию и телефон, чтобы мы могли с вами связаться',okDemo:'Спасибо! Менеджер ALFA TICKET свяжется с вами и расскажет, как подключить такую форму в рабочей группе вашей компании.',qrHow:'Сканируйте в приложении банка (Click, Payme, Uzum и др.), а не обычной камерой. Если оплачиваете с этого же телефона — сохраните QR и выберите «Сканировать из галереи». Нажмите на код, чтобы увеличить.',qrSave:'Сохранить QR-код',qrClose:'Нажмите, чтобы закрыть',hTitle:'Новая поездка',plane:'Самолёт',train:'Поезд',trainNote:'Билеты на «Афросиаб» раскупают очень быстро. Оставляйте заявку как можно раньше: если мест не будет, предложим другой поезд или авиарейс.',urg:'Срочно — выезд в ближайшие 24 часа',urgSub:'Менеджер сразу свяжется с вами',sRoute:'Маршрут',rt:'Туда-обратно',ow:'В одну сторону',mc:'Сложный маршрут',leg:'Перелёт',addLeg:'+ Добавить перелёт',pFrom:'Откуда',pTo:'Куда',dTo:'Туда',dBack:'Обратно',dPh:'ДД.ММ.ГГГГ',flex:'Даты гибкие ±3 дня',ppT:'Проверьте паспорта',ppB:'Паспорт каждого пассажира должен действовать минимум 6 месяцев после поездки.',ppD:'Для этой поездки — до',ppE:'или дольше.',sPax:'Пассажиры',adults:'Взрослые',kids:'Дети',u12:'до 12',age:'Возраст ребёнка',pick:'выбрать',y0:'до 1 года',y:n=>n+(n===1?' год':n<5?' года':' лет'),sFare:'Тариф · можно оба',bag:'Багаж / возвратный',nobag:'Без багажа / невозвратный',sCls:'Класс · можно несколько',eco:'Эконом',bus:'Бизнес',first:'Первый класс',sAdd:'Допуслуги',seat:'Выбор места',xbag:'Доп. багаж',fast:'Fast Track / бизнес-зал',ins:'Страховка',upg:'Повышение класса',seatQ:'Какое место?',sW:'У окна',sA:'У прохода',sT:'Рядом вместе',sTrain:'Поезд',afr:'Афросиаб',sharq:'Шарк',tAny:'Любой',fallback:'Нет мест — предложить другой поезд или самолёт',sPay:'Способ оплаты',bank:'Перечисление',cash:'Наличные',qr:'QR-код',bankH:'Счёт или договор подготовит наша бухгалтерия',cashH:'Оплата наличными в офисе ALFA',qrH:'После подтверждения суммы оплатите по QR и пришлите скрин или квитанцию',more:'Допуслуги и комментарий',less:'Свернуть',sPref:'Пожелания',direct:'Прямой',via:'С пересадкой',lay:'Пересадка не дольше',l3:'3 часов',l6:'6 часов',lAny:'Не важно',time:'Время отправления',m:'Утро',d:'День',e:'Вечер',sTour:'Услуги ALFA TOUR',hotel:'Отель',tr:'Трансфер',visa:'Виза',pCm:'Комментарий',send:'Отправить заявку',sending:'Отправляем…',e1:'Укажите направление и даты',e1m:'Заполните все перелёты: откуда, куда и дату',eDate:'Проверьте даты',e2:'Выберите возраст каждого ребёнка',e3:'Выберите хотя бы один тариф',e4:'Выберите хотя бы один класс',e5:'Выберите способ оплаты',eNet:'Не удалось отправить. Проверьте интернет и попробуйте ещё раз.',eAuth:'Откройте форму через кнопку «Оставить заявку» в Telegram-группе.',eClient:'Ссылка устарела. Попросите менеджера ALFA обновить кнопку в группе.',bad:'Такой даты нет',past:'Эта дата уже прошла',order:'Раньше даты вылета',wd:['вс','пн','вт','ср','чт','пт','сб'],mo:['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'],hOpen:'Сейчас на связи · ответим за 15 минут',hEve:'На связи 24/7 · ответим в ближайшее время',hNight:'На связи 24/7 · ответим в ближайшее время',okT:n=>'Заявка №'+n+' отправлена',okOpen:'Менеджер пришлёт варианты в вашу группу за 15 минут',okEve:'Заявка уже у нас — ответим в ближайшее время, варианты придут в вашу группу. Если вылет сегодня, включите «Срочно», и мы сразу позвоним.',okNight:'Заявка уже у нас — ответим в ближайшее время. Если вылет сегодня, включите «Срочно», и мы сразу позвоним.',okU:'Дежурный менеджер позвонит в течение 15 минут',okUN:'Срочная заявка принята — мы уже получили сигнал и свяжемся с вами как можно быстрее',okBank:'Оплата перечислением: счёт пришлём в группу вместе с билетом.',okCash:'Оплата наличными: менеджер подскажет, где и когда удобно оплатить.',okQr:'Оплата по QR-коду:',qrMiss:'QR-код пришлёт менеджер в группу.',qrWarn:'Оплачивайте только после того, как менеджер подтвердит сумму. После оплаты отправьте скрин или квитанцию ответом на карточку заявки в группе.',again:'Новая заявка'},
 uz:{pFl:'Reys/poyezd vaqti yoki raqami — bilsangiz',ppL:'ALFA TICKET chiptalarni buyurtmachi taqdim etgan ma’lumotlar asosida rasmiylashtiradi va pasportlarning amal qilish muddatini tekshirmaydi. Agar pasport talab qilingan muddatdan kam amal qilsa yoki kirish davlati talablariga mos kelmasa, reysga yoki mamlakatga kiritilmaslik hamda bunga bog‘liq xarajatlar uchun javobgarlik buyurtmachi zimmasida bo‘ladi.',ppC:'Barcha yo‘lovchilarning pasportlari safar tugaganidan keyin kamida 6 oy amal qilishini tasdiqlayman va',ppM:'javobgarlik shartlarini qabul qilaman',e7:'Pasportlar amal qilish muddatini tasdiqlang',soon:'tez orada',soonNote:'Temir yo‘l chiptalari tez orada paydo bo‘ladi, guruhda xabar beramiz. Hozircha aviachipta rasmiylashtirish mumkin.',demoT:'Bu formaning demo-versiyasi',demoB:'Uni haqiqiy ariza kabi toʻldiring. Arizani ALFA TICKET menejeri oladi va bunday formani sizda qanday ulash haqida aytib beradi.',demoP:'Kompaniyangiz va telefon raqamingiz',eDemo:'Siz bilan bogʻlanishimiz uchun kompaniya va telefonni kiriting',okDemo:'Rahmat! ALFA TICKET menejeri siz bilan bogʻlanadi va bunday formani kompaniyangiz ish guruhida qanday ulashni aytib beradi.',qrHow:'Oddiy kamera emas, bank ilovasida skanerlang (Click, Payme, Uzum va b.). Shu telefondan toʻlasangiz — QRni saqlab, «Galereyadan skanerlash»ni tanlang. Kattalashtirish uchun kodni bosing.',qrSave:'QR-kodni saqlash',qrClose:'Yopish uchun bosing',hTitle:'Yangi safar',plane:'Samolyot',train:'Poyezd',trainNote:'«Afrosiyob» chiptalari juda tez sotilib ketadi. Arizani imkon qadar ertaroq qoldiring: joy boʻlmasa, boshqa poyezd yoki reys taklif qilamiz.',urg:'Shoshilinch — 24 soat ichida joʻnash',urgSub:'Menejer darhol siz bilan bogʻlanadi',sRoute:'Yoʻnalish',rt:'Borish-qaytish',ow:'Bir tomonga',mc:'Murakkab yoʻnalish',leg:'Parvoz',addLeg:'+ Parvoz qoʻshish',pFrom:'Qayerdan',pTo:'Qayerga',dTo:'Borish',dBack:'Qaytish',dPh:'KK.OO.YYYY',flex:'Sanalar moslashuvchan ±3 kun',ppT:'Pasportlarni tekshiring',ppB:'Har bir yoʻlovchining pasporti safardan keyin kamida 6 oy amal qilishi kerak.',ppD:'Bu safar uchun —',ppE:'gacha yoki undan uzoqroq.',sPax:'Yoʻlovchilar',adults:'Kattalar',kids:'Bolalar',u12:'12 yoshgacha',age:'Bola yoshi',pick:'tanlang',y0:'1 yoshgacha',y:n=>n+' yosh',sFare:'Tarif · ikkalasi ham mumkin',bag:'Bagaj / qaytariladigan',nobag:'Bagajsiz / qaytarilmaydigan',sCls:'Klass · bir nechtasi mumkin',eco:'Ekonom',bus:'Biznes',first:'Birinchi klass',sAdd:'Qoʻshimcha xizmatlar',seat:'Joy tanlash',xbag:'Qoʻshimcha bagaj',fast:'Fast Track / biznes-zal',ins:'Sugʻurta',upg:'Klassni oshirish',seatQ:'Qanday joy?',sW:'Deraza yonida',sA:'Yoʻlak yonida',sT:'Yonma-yon',sTrain:'Poyezd',afr:'Afrosiyob',sharq:'Sharq',tAny:'Farqi yoʻq',fallback:'Joy boʻlmasa — boshqa poyezd yoki samolyot taklif qilinsin',sPay:'Toʻlov usuli',bank:'Pul oʻtkazish',cash:'Naqd pul',qr:'QR-kod',bankH:'Hisob yoki shartnomani buxgalteriyamiz tayyorlaydi',cashH:'ALFA ofisida naqd toʻlov',qrH:'Summa tasdiqlangach QR orqali toʻlang va skrinshot yoki kvitansiyani yuboring',more:'Qoʻshimcha xizmatlar va izoh',less:'Yigʻish',sPref:'Istaklar',direct:'Toʻgʻridan-toʻgʻri',via:'Qoʻnib oʻtish bilan',lay:'Kutish vaqti koʻpi bilan',l3:'3 soat',l6:'6 soat',lAny:'Farqi yoʻq',time:'Joʻnash vaqti',m:'Ertalab',d:'Kunduzi',e:'Kechqurun',sTour:'ALFA TOUR xizmatlari',hotel:'Mehmonxona',tr:'Transfer',visa:'Viza',pCm:'Izoh',send:'Arizani yuborish',sending:'Yuborilmoqda…',e1:'Yoʻnalish va sanalarni kiriting',e1m:'Barcha parvozlarni toʻldiring: qayerdan, qayerga va sana',eDate:'Sanalarni tekshiring',e2:'Har bir bolaning yoshini tanlang',e3:'Kamida bitta tarifni tanlang',e4:'Kamida bitta klassni tanlang',e5:'Toʻlov usulini tanlang',eNet:'Yuborib boʻlmadi. Internetni tekshirib, qayta urinib koʻring.',eAuth:'Formani Telegram-guruhdagi «Ariza qoldirish» tugmasi orqali oching.',eClient:'Havola eskirgan. ALFA menejeridan guruhdagi tugmani yangilashni soʻrang.',bad:'Bunday sana yoʻq',past:'Bu sana oʻtib ketgan',order:'Joʻnash sanasidan oldin',wd:['yak','dush','sesh','chor','pay','jum','shan'],mo:['yanvar','fevral','mart','aprel','may','iyun','iyul','avgust','sentabr','oktabr','noyabr','dekabr'],hOpen:'Hozir aloqadamiz · 15 daqiqada javob beramiz',hEve:'24/7 aloqadamiz · tez orada javob beramiz',hNight:'24/7 aloqadamiz · tez orada javob beramiz',okT:n=>'№'+n+' ariza yuborildi',okOpen:'Menejer 15 daqiqada guruhingizga variantlar yuboradi',okEve:'Ariza bizda — tez orada javob beramiz, variantlar guruhingizga keladi. Agar bugun uchsangiz, «Shoshilinch»ni yoqing, darhol qoʻngʻiroq qilamiz.',okNight:'Ariza bizda — tez orada javob beramiz. Agar bugun uchsangiz, «Shoshilinch»ni yoqing, darhol qoʻngʻiroq qilamiz.',okU:'Navbatchi menejer 15 daqiqa ichida qoʻngʻiroq qiladi',okUN:'Shoshilinch ariza qabul qilindi — signal bizga yetdi, imkon qadar tez bogʻlanamiz',okBank:'Pul oʻtkazish: toʻlov uchun hisobni chipta bilan birga guruhga yuboramiz.',okCash:'Naqd pul: menejer qayerda va qachon toʻlash qulayligini aytadi.',okQr:'QR-kod orqali toʻlov:',qrMiss:'QR-kodni menejer guruhga yuboradi.',qrWarn:'Faqat menejer summani tasdiqlagandan keyin toʻlang. Toʻlovdan soʻng skrinshot yoki kvitansiyani guruhdagi ariza kartochkasiga javob qilib yuboring.',again:'Yangi ariza'},
 en:{pFl:'Flight/train time or number — if known',ppL:'ALFA TICKET issues tickets based on the data provided by the customer and does not check passport validity. If a passport is valid for less than the required period or does not meet the entry requirements of the destination country, the customer is responsible for any denied boarding or entry and related costs.',ppC:'I confirm that all passengers’ passports are valid for at least 6 months after the end of the trip and accept the',ppM:'liability terms',e7:'Please confirm passport validity',soon:'soon',soonNote:'Train tickets are coming soon, we’ll announce it in the group. For now you can book a flight.',demoT:'This is a demo of the form',demoB:'Fill it in like a real request. An ALFA TICKET manager will receive it and contact you to explain how to set this form up for your team.',demoP:'Your company and phone',eDemo:'Enter your company and phone so we can contact you',okDemo:'Thank you! An ALFA TICKET manager will contact you and explain how to set up this form in your company’s work group.',qrHow:'Scan it in your banking app (Click, Payme, Uzum, etc.), not the regular camera. Paying from this same phone? Save the QR and choose “Scan from gallery”. Tap the code to enlarge.',qrSave:'Save QR code',qrClose:'Tap to close',hTitle:'New trip',plane:'Flight',train:'Train',trainNote:'Afrosiyob tickets sell out very fast. Send your request as early as possible: if it’s sold out, we’ll offer another train or a flight.',urg:'Urgent — departure within 24 hours',urgSub:'Your manager will contact you right away',sRoute:'Route',rt:'Round trip',ow:'One way',mc:'Multi-city',leg:'Flight',addLeg:'+ Add flight',pFrom:'From',pTo:'To',dTo:'Depart',dBack:'Return',dPh:'DD.MM.YYYY',flex:'Flexible dates ±3 days',ppT:'Check your passports',ppB:'Each passport must be valid for at least 6 months after the trip.',ppD:'For this trip — until',ppE:'or later.',sPax:'Passengers',adults:'Adults',kids:'Children',u12:'under 12',age:'Child age',pick:'select',y0:'under 1',y:n=>n+(n===1?' year':' years'),sFare:'Fare · both allowed',bag:'Baggage / refundable',nobag:'No baggage / non-refundable',sCls:'Class · several allowed',eco:'Economy',bus:'Business',first:'First class',sAdd:'Add-ons',seat:'Seat selection',xbag:'Extra baggage',fast:'Fast Track / lounge',ins:'Insurance',upg:'Upgrade',seatQ:'Which seat?',sW:'Window',sA:'Aisle',sT:'Together',sTrain:'Train',afr:'Afrosiyob',sharq:'Sharq',tAny:'Any',fallback:'If sold out — offer another train or a flight',sPay:'Payment',bank:'Bank transfer',cash:'Cash',qr:'QR code',bankH:'Our accounting team will prepare the invoice or contract',cashH:'Cash payment at the ALFA office',qrH:'After the amount is confirmed, pay by QR and send a screenshot or receipt',more:'Add-ons & comments',less:'Collapse',sPref:'Preferences',direct:'Direct',via:'With a layover',lay:'Layover no longer than',l3:'3 hours',l6:'6 hours',lAny:'Any',time:'Departure time',m:'Morning',d:'Afternoon',e:'Evening',sTour:'ALFA TOUR services',hotel:'Hotel',tr:'Transfer',visa:'Visa',pCm:'Comments',send:'Send request',sending:'Sending…',e1:'Enter the route and dates',e1m:'Fill in every flight: from, to and date',eDate:'Check the dates',e2:'Select each child’s age',e3:'Select at least one fare',e4:'Select at least one class',e5:'Choose a payment method',eNet:'Couldn’t send. Check your connection and try again.',eAuth:'Open the form with the “Send request” button in your Telegram group.',eClient:'This link is outdated. Ask your ALFA manager to refresh the button in the group.',bad:'Invalid date',past:'This date has passed',order:'Before departure date',wd:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],mo:['January','February','March','April','May','June','July','August','September','October','November','December'],hOpen:'Online now · reply within 15 min',hEve:'Available 24/7 · we’ll reply soon',hNight:'Available 24/7 · we’ll reply soon',okT:n=>'Request #'+n+' sent',okOpen:'Your manager will send options to your group within 15 minutes',okEve:'We’ve got your request and will reply soon — options will arrive in your group. If you’re flying today, turn on Urgent and we’ll call right away.',okNight:'We’ve got your request and will reply soon. If you’re flying today, turn on Urgent and we’ll call right away.',okU:'The on-duty manager will call you within 15 minutes',okUN:'Urgent request received — we’ve been alerted and will contact you as soon as possible',okBank:'Bank transfer: we’ll send the invoice to your group together with the ticket.',okCash:'Cash: your manager will tell you where and when to pay.',okQr:'Payment by QR code:',qrMiss:'Your manager will send the QR code to the group.',qrWarn:'Pay only after your manager confirms the amount. Then send a screenshot or receipt as a reply to the request card in your group.',again:'New request'}};
-Object.assign(T.ru, { newReq: 'Новая заявка', okAcc: 'Заявка принята', pFl: 'Туда: время или номер рейса', hWhat: 'Что оформляем', kAir: 'Авиабилеты', kAirS: 'любые направления', kTr: 'Ж/д билеты', kTrS: 'по Узбекистану', hRec: 'Ваши частые маршруты', hWelcome: 'Добро пожаловать', lastSent: 'отправлена', lFromPl: 'Вылет', lToPl: 'Прилёт', lFromTr: 'Отправление', lToTr: 'Прибытие', pFl2: 'Обратно: время или номер рейса', times: n => n + (n % 10 === 1 && n % 100 !== 11 ? ' раз' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? ' раза' : ' раз'), hi: ['Доброй ночи,', 'Доброе утро,', 'Добрый день,', 'Добрый вечер,'], recent: 'Недавние', okSent: 'Заявка отправлена', toGroup: 'Вернуться в группу', ld: 'Готовим вашу форму', tkReq: 'Заявка', tkDates: 'Даты', tkPax: 'Пассажиры', tkCls: 'Класс', tkMc: 'Сложный маршрут', bank: 'Перечисление', cash: 'Наличные', qr: 'QR-код' });
-Object.assign(T.uz, { newReq: 'Yangi ariza', okAcc: 'Ariza qabul qilindi', pFl: 'Borish: reys vaqti yoki raqami', hWhat: 'Nima rasmiylashtiramiz', kAir: 'Aviachiptalar', kAirS: 'istalgan yo‘nalish', kTr: 'Temir yo‘l', kTrS: 'O‘zbekiston bo‘ylab', hRec: 'Tez-tez yo‘nalishlaringiz', hWelcome: 'Xush kelibsiz', lastSent: 'yuborilgan', lFromPl: 'Uchish', lToPl: 'Qo‘nish', lFromTr: 'Jo‘nash', lToTr: 'Yetib kelish', pFl2: 'Qaytish: reys vaqti yoki raqami', times: n => n + ' marta', hi: ['Xayrli tun,', 'Xayrli tong,', 'Xayrli kun,', 'Xayrli kech,'], recent: 'Yaqinda', okSent: 'Ariza yuborildi', toGroup: 'Guruhga qaytish', ld: 'Formangiz tayyorlanmoqda', tkReq: 'Ariza', tkDates: 'Sanalar', tkPax: 'Yo‘lovchilar', tkCls: 'Klass', tkMc: 'Murakkab yo‘nalish' });
-Object.assign(T.en, { newReq: 'New request', okAcc: 'Request received', pFl: 'Outbound: flight time or number', hWhat: 'What do you need', kAir: 'Flights', kAirS: 'any destination', kTr: 'Train tickets', kTrS: 'within Uzbekistan', hRec: 'Your frequent routes', hWelcome: 'Welcome', lastSent: 'sent', lFromPl: 'Departure', lToPl: 'Arrival', lFromTr: 'Departure', lToTr: 'Arrival', pFl2: 'Return: flight time or number', times: n => n + (n === 1 ? ' time' : ' times'), hi: ['Good night,', 'Good morning,', 'Good afternoon,', 'Good evening,'], recent: 'Recent', okSent: 'Request sent', toGroup: 'Back to the group', ld: 'Preparing your form', tkReq: 'Request', tkDates: 'Dates', tkPax: 'Passengers', tkCls: 'Class', tkMc: 'Multi-city' });
+Object.assign(T.ru, { newReq: 'Новая заявка', toReview: 'Проверить заявку', revT: 'Проверьте заявку', revS: 'Всё верно? Если нужно что-то поменять, нажмите «Изменить».', edit: 'Изменить', yourReq: 'Ваша заявка', rvType: 'Поездка', rvDates: 'Даты', rvFl: 'Рейс / время', rvTrain: 'Поезд', rvUrg: 'Срочно', yes: 'Да, вылет в ближайшие 24 часа', okWhen: 'Когда ответим', okBy: x => 'Ориентир: до ' + x, okCallBy: x => 'Позвоним до ' + x, thxT: 'Спасибо за сотрудничество!', thx: 'Ценим, что вы работаете с ALFA TICKET. Сделаем всё, чтобы поездка прошла спокойно.', okAcc: 'Заявка принята', pFl: 'Туда: время или номер рейса', hWhat: 'Что оформляем', kAir: 'Авиабилеты', kAirS: 'любые направления', kTr: 'Ж/д билеты', kTrS: 'по Узбекистану', hRec: 'Ваши частые маршруты', hWelcome: 'Добро пожаловать', lastSent: 'отправлена', lFromPl: 'Вылет', lToPl: 'Прилёт', lFromTr: 'Отправление', lToTr: 'Прибытие', pFl2: 'Обратно: время или номер рейса', times: n => n + (n % 10 === 1 && n % 100 !== 11 ? ' раз' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? ' раза' : ' раз'), hi: ['Доброй ночи,', 'Доброе утро,', 'Добрый день,', 'Добрый вечер,'], recent: 'Недавние', okSent: 'Заявка отправлена', toGroup: 'Вернуться в группу', ld: 'Готовим вашу форму', tkReq: 'Заявка', tkDates: 'Даты', tkPax: 'Пассажиры', tkCls: 'Класс', tkMc: 'Сложный маршрут', bank: 'Перечисление', cash: 'Наличные', qr: 'QR-код' });
+Object.assign(T.uz, { newReq: 'Yangi ariza', toReview: 'Arizani tekshirish', revT: 'Arizani tekshiring', revS: 'Hammasi to‘g‘rimi? O‘zgartirish kerak bo‘lsa, «O‘zgartirish»ni bosing.', edit: 'O‘zgartirish', yourReq: 'Arizangiz', rvType: 'Safar', rvDates: 'Sanalar', rvFl: 'Reys / vaqt', rvTrain: 'Poyezd', rvUrg: 'Shoshilinch', yes: 'Ha, 24 soat ichida jo‘nash', okWhen: 'Qachon javob beramiz', okBy: x => 'Taxminan: ' + x + ' gacha', okCallBy: x => x + ' gacha qo‘ng‘iroq qilamiz', thxT: 'Hamkorlik uchun rahmat!', thx: 'ALFA TICKET bilan ishlaganingizni qadrlaymiz. Safaringiz xotirjam o‘tishi uchun hammasini qilamiz.', okAcc: 'Ariza qabul qilindi', pFl: 'Borish: reys vaqti yoki raqami', hWhat: 'Nima rasmiylashtiramiz', kAir: 'Aviachiptalar', kAirS: 'istalgan yo‘nalish', kTr: 'Temir yo‘l', kTrS: 'O‘zbekiston bo‘ylab', hRec: 'Tez-tez yo‘nalishlaringiz', hWelcome: 'Xush kelibsiz', lastSent: 'yuborilgan', lFromPl: 'Uchish', lToPl: 'Qo‘nish', lFromTr: 'Jo‘nash', lToTr: 'Yetib kelish', pFl2: 'Qaytish: reys vaqti yoki raqami', times: n => n + ' marta', hi: ['Xayrli tun,', 'Xayrli tong,', 'Xayrli kun,', 'Xayrli kech,'], recent: 'Yaqinda', okSent: 'Ariza yuborildi', toGroup: 'Guruhga qaytish', ld: 'Formangiz tayyorlanmoqda', tkReq: 'Ariza', tkDates: 'Sanalar', tkPax: 'Yo‘lovchilar', tkCls: 'Klass', tkMc: 'Murakkab yo‘nalish' });
+Object.assign(T.en, { newReq: 'New request', toReview: 'Review request', revT: 'Review your request', revS: 'All correct? To change something, tap “Edit”.', edit: 'Edit', yourReq: 'Your request', rvType: 'Trip', rvDates: 'Dates', rvFl: 'Flight / time', rvTrain: 'Train', rvUrg: 'Urgent', yes: 'Yes, departure within 24 hours', okWhen: 'When we’ll reply', okBy: x => 'Expected by ' + x, okCallBy: x => 'We’ll call by ' + x, thxT: 'Thank you for working with us!', thx: 'We value your trust in ALFA TICKET and will make sure your trip goes smoothly.', okAcc: 'Request received', pFl: 'Outbound: flight time or number', hWhat: 'What do you need', kAir: 'Flights', kAirS: 'any destination', kTr: 'Train tickets', kTrS: 'within Uzbekistan', hRec: 'Your frequent routes', hWelcome: 'Welcome', lastSent: 'sent', lFromPl: 'Departure', lToPl: 'Arrival', lFromTr: 'Departure', lToTr: 'Arrival', pFl2: 'Return: flight time or number', times: n => n + (n === 1 ? ' time' : ' times'), hi: ['Good night,', 'Good morning,', 'Good afternoon,', 'Good evening,'], recent: 'Recent', okSent: 'Request sent', toGroup: 'Back to the group', ld: 'Preparing your form', tkReq: 'Request', tkDates: 'Dates', tkPax: 'Passengers', tkCls: 'Class', tkMc: 'Multi-city' });
 const RU = T.ru;
 
 const tg = window.Telegram && Telegram.WebApp;
@@ -548,7 +583,7 @@ function chips(id, multi, cb) {
 }
 function sw(id, cb) { $(id).addEventListener('click', () => { $(id).classList.toggle('on'); hap('tap'); if (cb) cb(); }); }
 const swOn = id => $(id).classList.contains('on');
-function clr() { ['e1','e2','e3','e4','e5','e6','e7'].forEach(i => $(i).textContent = ''); }
+function clr() { ['e1','e2','e3','e4','e5','e6','e7','e9'].forEach(i => $(i).textContent = ''); }
 
 // ---------- Недавние маршруты (хранятся только в телефоне) ----------
 const RKEY = () => 'alfa_recent_' + CODE;
@@ -580,16 +615,16 @@ function usePreset(x) {
 }
 
 // ---------- Экраны ----------
-const SCREENS = ['loading', 'fatal', 'home', 'form', 'ok'];
+const SCREENS = ['loading', 'fatal', 'home', 'form', 'rev', 'ok'];
 function show(id) {
   SCREENS.forEach(x => $(x).classList.toggle('hide', x !== id));
   window.scrollTo(0, 0);
   const el = $(id);
-  if (id === 'home' || id === 'form') {
+  if (id === 'home' || id === 'form' || id === 'rev') {
     qs('#' + id + ' > *').forEach((e, i) => e.style.animationDelay = Math.min(i * 35, 420) + 'ms');
     el.classList.remove('in'); void el.offsetWidth; el.classList.add('in'); setTimeout(() => el.classList.remove('in'), 1200);
   }
-  try { if (tg && tg.BackButton) { if (id === 'form') tg.BackButton.show(); else tg.BackButton.hide(); } } catch (e) {}
+  try { if (tg && tg.BackButton) { if (id === 'form' || id === 'rev') tg.BackButton.show(); else tg.BackButton.hide(); } } catch (e) {}
 }
 function showHome() { renderHome(); show('home'); }
 function openForm(m, preset) {
@@ -635,6 +670,7 @@ function tr() {
   $('moreT').textContent = moreOpen ? t.less : t.more;
   hdr(); payHint(); ages(); renderLegs(); checkDates(); renderRecent(); setLabels();
   if (!$('home').classList.contains('hide')) renderHome();
+  if (!$('rev').classList.contains('hide')) renderReview(true);
   const pf = findPlace($('from').dataset.ru), pt = findPlace($('to').dataset.ru);
   if (pf) setPlace($('from'), pf); if (pt) setPlace($('to'), pt);
   document.documentElement.lang = L;
@@ -768,25 +804,64 @@ function ticketView() {
   return { A: ca || cityOf(a), B: cb || cityOf(b), a: ca ? cityOf(a) : '', b: cb ? cityOf(b) : '', long: !(ca && cb), dates, pax: String(s.ad + s.ch), cls, mc, kind };
 }
 function esc(v) { return String(v).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
-function renderTicket() {
-  if (!last || $('ok').classList.contains('hide')) return;
-  const t = T[L], v = last.tv;
-  const num = last.id ? '<span>' + esc(t.tkReq) + ' №' + esc(last.id) + '</span>' : '<span class="wait">' + esc(t.tkReq) + ' №…</span>';
-  $('tk').innerHTML =
-    '<div class="tkt"><div class="tkh">' + num + '<span>' + esc(v.mc ? t.tkMc : (M === 'tr' ? t.train : t.plane)) + '</span></div>' +
+function fmtD(v) { const d = parseD(v), t = T[L]; return d ? t.wd[d.getDay()] + ', ' + d.getDate() + ' ' + t.mo[d.getMonth()] + ' ' + d.getFullYear() : v; }
+function reviewRows() {
+  const t = T[L], mc = trip() === 'mc', R = [], lb = k => String(t[k] || '').split(' · ')[0];
+  const nm = inp => { const c = inp.dataset.code; return inp.value + (c ? ' (' + c + ')' : ''); };
+  R.push([t.rvType, (M === 'tr' ? t.train : t.plane) + ' · ' + t[trip()]]);
+  if (mc) legs.forEach((g, i) => R.push([t.leg + ' ' + (i + 1), g.f + ' → ' + g.t + ' · ' + fmtD(g.d) + (g.fl ? ' · ' + g.fl : '')]));
+  else {
+    R.push([lb('sRoute'), nm($('from')) + ' → ' + nm($('to'))]);
+    R.push([t.rvDates, fmtD(D1.tx.value) + (trip() === 'rt' ? ' — ' + fmtD(D2.tx.value) : '')]);
+    const fl = [$('fl1').value.trim(), trip() === 'rt' ? $('fl2').value.trim() : ''].filter(Boolean).join(' / ');
+    if (fl) R.push([t.rvFl, fl]);
+  }
+  if (swOn('flx')) R.push([t.rvDates, t.flex]);
+  const ag = qs('select', $('ages')).map(x => x.value === '0' ? t.y0 : t.y(+x.value));
+  R.push([lb('sPax'), t.adults + ': ' + s.ad + (s.ch ? ' · ' + t.kids + ': ' + ag.join(', ') : '')]);
+  if (M === 'pl') R.push([lb('sFare'), on('fare').map(v => t[v]).join(', ')]);
+  R.push([lb('sCls'), on(M === 'tr' ? 'tcls' : 'cls').map(v => t[v] || v.toUpperCase()).join(', ')]);
+  const pr = [];
+  if (M === 'pl') { pr.push(...on('dir').map(v => t[v])); if (on('dir').includes('via') && on('lay')[0] !== 'any') pr.push(t.lay + ' ' + t['l' + on('lay')[0]]); }
+  pr.push(...on('tm').map(v => t[v]));
+  if (pr.length) R.push([lb('sPref'), pr.join(', ')]);
+  if (M === 'tr') { const tv = on('tt')[0]; R.push([t.rvTrain, t[tv === 'any' ? 'tAny' : tv] + (swOn('fb') ? ' · ' + t.fallback : '')]); }
+  const sm = { w: 'sW', a: 'sA', t: 'sT' };
+  const ad = on('add').map(v => v === 'seat' && on('seatP').length ? t.seat + ' (' + on('seatP').map(x => t[sm[x]]).join(', ') + ')' : t[v]);
+  if (M === 'pl' && ad.length) R.push([lb('sAdd'), ad.join(', ')]);
+  const ex = on('ex').filter(v => M === 'pl' || v !== 'visa').map(v => t[v]);
+  if (ex.length) R.push([lb('sTour'), ex.join(', ')]);
+  R.push([lb('sPay'), t[on('pay')[0]]]);
+  if ($('cm').value.trim()) R.push([t.pCm, $('cm').value.trim()]);
+  if (swOn('urg')) R.push([t.rvUrg, t.yes, 'urgent']);
+  return R;
+}
+let revTv = null, revPlayed = false;
+function renderReview(instant) {
+  const t = T[L], v = revTv = ticketView();
+  $('fk2').textContent = $('fk').textContent;
+  $('rtk').innerHTML =
+    '<div class="tkt"><div class="tkh"><span>' + esc(t.yourReq) + '</span><span>' + esc(v.mc ? t.tkMc : (M === 'tr' ? t.train : t.plane)) + '</span></div>' +
     '<div class="tkr' + (v.long ? ' stack' : '') + '"><div class="c"><b class="' + (v.long ? 'long' : '') + '">' + esc(v.A) + '</b><span>' + esc(v.a) + '</span></div>' +
     '<div class="rt" id="rt">' + routeSvg(v.kind) + '</div>' +
     '<div class="c"><b class="' + (v.long ? 'long' : '') + '">' + esc(v.B) + '</b><span>' + esc(v.b) + '</span></div></div></div>' +
-    '<div class="tkl"></div><div class="tkn l"></div><div class="tkn r"></div>' +
+    '<div class="tkl" style="transform:none;animation:none"></div><div class="tkn l"></div><div class="tkn r"></div>' +
     '<div class="tkg"><div><small>' + esc(t.tkDates) + '</small><span>' + esc(v.dates) + '</span></div><div><small>' + esc(t.tkPax) + '</small><span>' + esc(v.pax) + '</span></div><div><small>' + esc(t.tkCls) + '</small><span>' + esc(v.cls) + '</span></div></div>';
-  const top = $('tk').querySelector('.tkt').offsetHeight;
-  $('tk').style.setProperty('--ny', (top - 10) + 'px');
-  // анимация маршрута один раз, после печати билета; при повторной отрисовке сразу финал
+  $('rtk').style.setProperty('--ny', ($('rtk').querySelector('.tkt').offsetHeight - 10) + 'px');
+  $('rvList').innerHTML = reviewRows().map(r => '<div class="rvr' + (r[2] ? ' ' + r[2] : '') + '"><span>' + esc(r[0]) + '</span><b>' + esc(r[1]) + '</b></div>').join('');
   const rt = $('rt');
-  if (last.played) routeAnim(rt, v.kind, 0, true);
-  else { last.played = true; routeAnim(rt, v.kind, 2200, false); }
+  // одна анимация на экране: маршрут проигрывается после появления экрана
+  if (instant || revPlayed) routeAnim(rt, v.kind, 0, true); else { revPlayed = true; routeAnim(rt, v.kind, 650, false); }
   rt.onclick = () => { hap('tap'); routeAnim(rt, v.kind, 0, false); };
 }
+function goReview() {
+  const t = T[L];
+  if (!collect()) return;
+  if (DEMO && $('demoC').value.trim().length < 5) { $('e9').textContent = t.eDemo; hap('error'); $('demoC').scrollIntoView({ block: 'center' }); return; }
+  hap('press'); revPlayed = false; $('e6').textContent = '';
+  show('rev'); renderReview(false);
+}
+function renderTicket() { if (!$('rev').classList.contains('hide')) renderReview(true); }
 
 // ---------- Анимация маршрута в билете ----------
 // pl = самолёт, tr = поезд; ow = в одну сторону, rt = туда-обратно, mc = сложный маршрут
@@ -878,41 +953,46 @@ async function send() {
   const t = T[L], b = $('send');
   if (DEMO) {
     const dc = $('demoC').value.trim();
-    if (dc.length < 5) { $('e6').textContent = t.eDemo; hap('error'); $('demoC').focus(); return; }
+    if (dc.length < 5) { show('form'); $('e9').textContent = t.eDemo; hap('error'); return; }
     data.comment = 'Контакт: ' + dc + (data.comment ? ' · ' + data.comment : '');
   }
   sending = true; hap('press');
   const body = JSON.stringify({ kind: 'request', code: CODE, initData: tg ? tg.initData : '', data });
   const req = post(body).catch(() => new Promise(r => setTimeout(r, 1500)).then(() => post(body))); // одна повторная попытка
-  b.classList.add('go');
-  last = { id: null, urgent: data.urgent, p: data.period, pay: data.payKey, tv: ticketView(), played: false };
+  $('e6').textContent = ''; $('rvBar').classList.add('going'); b.classList.add('go');
+  last = { id: null, urgent: data.urgent, p: data.period, pay: data.payKey, tv: ticketView() };
   saveRecent();
-  setTimeout(() => { if (sending || (last && last.id)) showOk(); }, 1100);
+  const t0 = Date.now();
   let j = null;
   try { j = await req; } catch (e) { j = null; }
   if (j && j.ok) {
     last.id = j.id; sending = false;
     try { const n = new Date(), pad = x => String(x).padStart(2, '0');
       localStorage.setItem(LKEY(), JSON.stringify({ id: j.id, s: last.tv.A + ' → ' + last.tv.B, at: pad(n.getDate()) + '.' + pad(n.getMonth() + 1) + ' ' + pad(n.getHours()) + ':' + pad(n.getMinutes()) })); } catch (e) {}
-    if (!$('ok').classList.contains('hide')) {
-      const w = $('tk').querySelector('.wait'); if (w) { w.classList.remove('wait'); w.textContent = t.tkReq + ' №' + j.id; }
-      $('again').disabled = false;
-    }
+    // «Принята» показываем только после подтверждения сервера (но не раньше, чем улетит самолётик)
+    setTimeout(showOk, Math.max(0, 1100 - (Date.now() - t0)));
     hap('success');
     return;
   }
-  // Не ушло: возвращаем клиента к форме, всё заполненное сохранено
+  // Не ушло: возвращаем клиента на проверку, всё заполненное сохранено
   sending = false;
-  $('ok').classList.add('hide'); $('form').classList.remove('hide'); b.classList.remove('go');
+  show('rev'); renderReview(true); b.classList.remove('go'); $('rvBar').classList.remove('going');
   $('e6').textContent = j && j.error === 'auth' ? t.eAuth : j && j.error === 'client' ? t.eClient : t.eNet;
   hap('error');
 }
 function showOk() {
-  show('ok');
-  okFill(); renderTicket();
-  // перезапуск анимаций
-  qs('#ok .oki, #ok .tkc, #ok .okafter').forEach(e => { e.style.animation = 'none'; void e.offsetWidth; e.style.animation = ''; });
+  show('ok'); okFill();
+  $('send').classList.remove('go'); $('rvBar').classList.remove('going');
+  // перезапуск анимаций: галочка, потом текст
+  qs('#ok .oki, #ok .okafter').forEach(e => { e.style.animation = 'none'; void e.offsetWidth; e.style.animation = ''; });
 }
+function okNum() {
+  const t = T[L], n = $('okN');
+  n.textContent = last && last.id ? t.tkReq + ' №' + last.id : t.tkReq + ' №…';
+  n.classList.toggle('wait', !(last && last.id));
+  $('again').disabled = !(last && last.id);
+}
+function soonAt(min) { const h = tashParts().h + min / 60, hh = Math.floor(h) % 24, mm = Math.round((h - Math.floor(h)) * 60); return String(mm === 60 ? (hh + 1) % 24 : hh).padStart(2, '0') + ':' + String(mm % 60).padStart(2, '0'); }
 function okFill() {
   if (!last) return;
   const t = T[L], p = last.p; let S, icon, bg = 'var(--blue)';
@@ -920,10 +1000,11 @@ function okFill() {
   else { S = p === 'open' ? t.okOpen : p === 'eve' ? t.okEve : t.okNight; icon = '<svg width="38" height="38" viewBox="0 0 24 24" fill="none"><path class="chk" d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'; }
   if (DEMO) S = t.okDemo;
   $('okT').textContent = t.okAcc; $('okS').textContent = S;
+  $('okD').textContent = DEMO ? '' : last.urgent ? (p === 'night' ? '' : t.okCallBy(soonAt(15))) : p === 'open' ? t.okBy(soonAt(15)) : '';
+  okNum();
   $('okP').textContent = last.pay === 'bank' ? t.okBank : last.pay === 'cash' ? t.okCash : t.okQr;
   $('qrBox').classList.toggle('hide', last.pay !== 'qr');
   const e = $('okI'); e.style.background = bg; e.innerHTML = icon;
-  $('again').disabled = !last.id;
 }
 
 // ---------- Запуск ----------
@@ -971,7 +1052,7 @@ async function init() {
     hap('tap'); setMode(b.dataset.m); };
   qs('.kind').forEach(b => b.onclick = () => { hap('tap'); if (!TRAIN_ON && b.dataset.k === 'tr') return; openForm(b.dataset.k); });
   $('hNew').onclick = () => { hap('press'); openForm(); };
-  try { if (tg && tg.BackButton) tg.BackButton.onClick(() => { if (!$('form').classList.contains('hide')) { hap('tap'); showHome(); } }); } catch (e) {}
+  try { if (tg && tg.BackButton) tg.BackButton.onClick(() => { if (sending) return; hap('tap'); if (!$('rev').classList.contains('hide')) show('form'); else if (!$('form').classList.contains('hide')) showHome(); }); } catch (e) {}
   $('swap').onclick = () => { const f = $('from'), to = $('to'), cf = codeEl(f), ct = codeEl(to);
     [f.value, to.value] = [to.value, f.value]; [f.dataset.ru, to.dataset.ru] = [to.dataset.ru || '', f.dataset.ru || ''];
     [f.dataset.code, to.dataset.code] = [to.dataset.code || '', f.dataset.code || '']; cf.textContent = f.dataset.code; ct.textContent = to.dataset.code;
@@ -985,6 +1066,8 @@ async function init() {
   qs('[data-c]').forEach(b => b.onclick = () => { const k = b.dataset.c, v = s[k] + +b.dataset.d; if (v < (k === 'ad' ? 1 : 0) || v > 9) return; s[k] = v; const n = $(k); n.textContent = v; n.classList.remove('bump'); void n.offsetWidth; n.classList.add('bump'); hap('tap'); if (k === 'ch') ages(); clr(); });
   $('addLeg').onclick = () => { const p = legs[legs.length - 1]; legs.push({ f: p.t || '', fr: p.tr || '', t: '', tr: '', d: '' }); renderLegs(); };
   $('send').onclick = send;
+  $('next').onclick = goReview;
+  $('rvEdit').onclick = () => { if (sending) return; hap('tap'); show('form'); };
   $('again').onclick = () => { $('send').classList.remove('go'); renderRecent(); showHome(); };
   if (tg && tg.close) { $('toGroup').classList.remove('hide'); $('toGroup').onclick = () => tg.close(); }
 
