@@ -228,7 +228,8 @@ select{border:1px solid var(--line);background:var(--card2);color:var(--tx);bord
 .mb.go{animation:morph .35s cubic-bezier(.4,0,.2,1) forwards}
 .mb.go .mbt{animation:fadeOut .15s forwards}
 .mb.go .mbp{animation:fadeIn .15s .2s forwards}
-.mb.go .mbp svg{animation:takeoff .7s .45s cubic-bezier(.55,0,.85,.35) forwards}
+.mb.go .mbp svg{animation:fadeOut .1s .45s forwards}
+.flyo{position:fixed;left:0;top:0;pointer-events:none;z-index:60;overflow:visible}
 @keyframes spin{to{transform:rotate(360deg)}}
 .mb.go::before{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid rgba(255,255,255,.18);border-top-color:#fff;opacity:0;animation:fadeIn .2s 1.15s forwards,spin .9s linear 1.15s infinite}
 .mb2{width:100%;height:52px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--tx);font-weight:600;font-size:15px;margin-top:10px}
@@ -316,9 +317,10 @@ select{border:1px solid var(--line);background:var(--card2);color:var(--tx);bord
 <div id="fatal" class="center hide"></div>
 
 <div id="home" class="hide">
-  <div class="top"><img class="lh" src="logo_white_h.png" alt="ALFA TICKET"><div class="co" id="company"></div>
+  <div class="top"><img class="lh" src="logo_white_h.png" alt="ALFA TICKET">
     <div class="langs"><button class="lg" data-l="ru">RU</button><button class="lg" data-l="uz">UZ</button><button class="lg" data-l="en">EN</button></div></div>
   <div class="hello">
+    <div class="fk" id="company" style="margin-bottom:8px"></div>
     <div class="hi" id="hi"></div>
     <div class="nm" id="nm"></div>
     <div class="sub"><span class="dot" id="dot"></span><span id="hs"></span></div>
@@ -960,6 +962,8 @@ async function send() {
   const body = JSON.stringify({ kind: 'request', code: CODE, initData: tg ? tg.initData : '', data });
   const req = post(body).catch(() => new Promise(r => setTimeout(r, 1500)).then(() => post(body))); // одна повторная попытка
   $('e6').textContent = ''; $('rvBar').classList.add('going'); b.classList.add('go');
+  if ($('rt') && revTv) routeAnim($('rt'), revTv.kind, 0, true); // маршрут на билете сразу в финал: одна анимация за раз
+  setTimeout(() => flyOff(b), 450);
   last = { id: null, urgent: data.urgent, p: data.period, pay: data.payKey, tv: ticketView() };
   saveRecent();
   const t0 = Date.now();
@@ -970,7 +974,7 @@ async function send() {
     try { const n = new Date(), pad = x => String(x).padStart(2, '0');
       localStorage.setItem(LKEY(), JSON.stringify({ id: j.id, s: last.tv.A + ' → ' + last.tv.B, at: pad(n.getDate()) + '.' + pad(n.getMonth() + 1) + ' ' + pad(n.getHours()) + ':' + pad(n.getMinutes()) })); } catch (e) {}
     // «Принята» показываем только после подтверждения сервера (но не раньше, чем улетит самолётик)
-    setTimeout(showOk, Math.max(0, 1100 - (Date.now() - t0)));
+    setTimeout(showOk, Math.max(0, 1400 - (Date.now() - t0)));
     hap('success');
     return;
   }
@@ -979,6 +983,31 @@ async function send() {
   show('rev'); renderReview(true); b.classList.remove('go'); $('rvBar').classList.remove('going');
   $('e6').textContent = j && j.error === 'auth' ? t.eAuth : j && j.error === 'client' ? t.eClient : t.eNet;
   hap('error');
+}
+// Взлёт самолётика с кнопки: белый, по плавной дуге, нос по направлению полёта, за ним след
+function flyOff(btn) {
+  let reduce = false; try { reduce = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  if (reduce || !btn.isConnected) return;
+  const r = btn.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+  const W = innerWidth, H = innerHeight, ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('class', 'flyo'); svg.setAttribute('width', W); svg.setAttribute('height', H); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  const d = 'M' + cx + ' ' + (cy - 6) + ' C ' + cx + ' ' + (cy - H * .32) + ', ' + (cx + 24) + ' ' + (cy - H * .62) + ', ' + (cx + 120) + ' -70';
+  svg.innerHTML = '<path d="' + d + '" fill="none" stroke="#5B93E6" stroke-width="2" stroke-linecap="round" opacity=".9"/><g><g transform="scale(1.15)"><use href="#i-jet" x="-12" y="-11" width="24" height="22" fill="#fff"/></g></g>';
+  document.body.appendChild(svg);
+  const path = svg.querySelector('path'), pl = svg.querySelector('g'), L0 = path.getTotalLength();
+  path.style.strokeDasharray = L0 + ' ' + L0; path.style.strokeDashoffset = L0;
+  const T0 = performance.now(), DUR = 900;
+  const step = now => {
+    const f = Math.min(1, (now - T0) / DUR), e = f * f * (1.6 - .6 * f); // разгон, как на взлёте
+    const at = path.getPointAtLength(L0 * e), a1 = path.getPointAtLength(Math.max(0, L0 * e - 1)), a2 = path.getPointAtLength(Math.min(L0, L0 * e + 1));
+    const ang = Math.atan2(a2.y - a1.y, a2.x - a1.x) * 180 / Math.PI;
+    pl.setAttribute('transform', 'translate(' + at.x.toFixed(1) + ' ' + at.y.toFixed(1) + ') rotate(' + ang.toFixed(1) + ')');
+    path.style.strokeDashoffset = (L0 * (1 - e)).toFixed(1);
+    path.style.opacity = f < .55 ? .9 : (.9 * (1 - (f - .55) / .45)).toFixed(2);
+    if (f < 1) requestAnimationFrame(step); else svg.remove();
+  };
+  requestAnimationFrame(step);
 }
 function showOk() {
   show('ok'); okFill();
